@@ -3,4 +3,8 @@
     <string name="menu_item_movie">Movie</string>
     <string name="menu_item_tv_series">TV</string>
     <string name="menu_item_profile">Profile</string>
+    <string name="discover_movies_toolbar_title">Discover movies</string>
+    <string name="discover_movies_popular">What\'s Popular</string>
+    <string name="discover_movies_trending">Trending</string>
+    <string name="discover_movies_top_rated">Top Rated</string>
 </resources>
