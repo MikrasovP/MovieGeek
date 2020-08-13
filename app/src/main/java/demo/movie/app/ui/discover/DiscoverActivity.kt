@@ -1,15 +1,15 @@
 package demo.movie.app.ui.discover
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
 import demo.movie.app.ui.discover.movie.MovieFragment
 import demo.movie.app.ui.discover.profile.ProfileFragment
 import demo.movie.app.ui.discover.tv.TvFragment
 import kotlinx.android.synthetic.main.discover_activity.*
 
-class DiscoverActivity : AppCompatActivity() {
+class DiscoverActivity : DaggerAppCompatActivity() {
 
     private lateinit var movieFragment: MovieFragment
     private lateinit var tvFragment: TvFragment
