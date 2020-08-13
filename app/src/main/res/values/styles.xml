@@ -12,4 +12,12 @@
         <item name="android:statusBarColor">@color/colorBackground</item>
     </style>
 
+    <style name="GeekTheme.Discover" />
+
+    <style name="GeekTheme.Discover.Subtitle">
+        <item name="android:textSize">@dimen/font_large_20</item>
+        <item name="android:paddingStart">@dimen/discover_subtitle_side_padding_10</item>
+        <item name="android:paddingEnd">@dimen/discover_subtitle_side_padding_10</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
 </resources>
