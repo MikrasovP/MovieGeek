@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/discover_fragments_navigation"
+    app:startDestination="@id/movies_fragment">
+
+    <fragment
+        android:id="@+id/movies_fragment"
+        android:name="demo.movie.app.ui.discover.movie.MovieFragment"
+        tools:layout="@layout/discover_movies_fragment">
+        <action
+            android:id="@+id/action_movies_to_tv"
+            app:destination="@id/tv_fragment"/>
+        <action
+            android:id="@+id/action_movies_to_profile"
+            app:destination="@id/profile_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/tv_fragment"
+        android:name="demo.movie.app.ui.discover.tv.TvFragment"
+        tools:layout="@layout/discover_tv_fragment">
+        <action
+            android:id="@+id/action_tv_to_profile"
+            app:destination="@id/profile_fragment"/>
+        <action
+            android:id="@+id/action_tv_to_movies"
+            app:destination="@id/movies_fragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="demo.movie.app.ui.discover.profile.ProfileFragment"
+        tools:layout="@layout/discover_profile_fragment">
+        <action
+            android:id="@+id/action_profile_to_movies"
+            app:destination="@id/movies_fragment"/>
+        <action
+            android:id="@+id/action_profile_to_tv"
+            app:destination="@id/tv_fragment"/>
+    </fragment>
+
+</navigation>
