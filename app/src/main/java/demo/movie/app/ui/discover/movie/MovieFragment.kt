@@ -54,25 +54,32 @@ class MovieFragment : Fragment(), MovieContract.MovieView {
                 }
             }
         }
-        val linearLayoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.HORIZONTAL,
-            false
-        )
 
         popular_movies_rv.apply {
             adapter = this@MovieFragment.adapterPopular
-            layoutManager = linearLayoutManager
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
             addItemDecoration(decorator)
         }
         trending_movies_rv.apply {
             adapter = this@MovieFragment.adapterTrending
-            layoutManager = linearLayoutManager
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
             addItemDecoration(decorator)
         }
         top_movies_rv.apply {
             adapter = this@MovieFragment.adapterTop
-            layoutManager = linearLayoutManager
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
             addItemDecoration(decorator)
         }
     }
