@@ -18,6 +18,8 @@ interface MovieContract {
         fun showLoadingProgressBar()
 
         fun showReloadError()
+
+        fun showMovieDetail(movie: MoviePreviewDto)
     }
 
     interface MoviePresenter : MvpPresenter<MovieView>
