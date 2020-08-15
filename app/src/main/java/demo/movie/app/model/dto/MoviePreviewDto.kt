@@ -6,7 +6,7 @@ data class MoviePreviewDto(
     @SerializedName("id")
     val id: Int,
     @SerializedName("adult")
-    val boolean: Boolean,
+    val adult: Boolean,
     @SerializedName("popularity")
     val popularity: Double,
     @SerializedName("name")

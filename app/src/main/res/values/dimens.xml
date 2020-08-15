@@ -15,5 +15,12 @@
 
     <dimen name="discover_subtitle_side_padding_10">10dp</dimen>
     <dimen name="discover_subtitle_height">48dp</dimen>
-    <dimen name="discover_list_height">200dp</dimen>
+    <dimen name="discover_list_height">216dp</dimen>
+
+    <dimen name="discover_card_width">200dp</dimen>
+    <dimen name="discover_card_height">200dp</dimen>
+
+    <dimen name="adult_label_corner_radius">4dp</dimen>
+    <dimen name="adult_label_alpha">0.5</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
 </resources>

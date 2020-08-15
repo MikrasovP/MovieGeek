@@ -14,4 +14,6 @@
     <string name="discover_tv_series_popular">What\'s Popular</string>
     <string name="discover_tv_series_trending">Trending</string>
     <string name="discover_tv_series_top_rated">Top Rated</string>
+
+    <string name="discover_card_adult_label_text">18+</string>
 </resources>
