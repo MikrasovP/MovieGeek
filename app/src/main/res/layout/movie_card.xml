@@ -5,7 +5,7 @@
     android:layout_width="@dimen/discover_card_width"
     android:layout_height="@dimen/discover_card_height"
     app:cardBackgroundColor="@color/colorBackground"
-    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardCornerRadius="@dimen/discover_card_corner_radius"
     app:cardElevation="8dp"
     android:layout_margin="@dimen/spacing_small_8">
 
@@ -16,23 +16,21 @@
         <ImageView
             android:id="@+id/iv_movie_card_poster"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/poster_height"
             android:scaleType="centerCrop"
             android:src="@color/colorAccent"
             android:transitionName="meme_pic"
             app:layout_constraintBottom_toTopOf="@id/tv_movie_card_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_movie_card_title"
             style="@style/GeekTheme.Discover.Card.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/tv_movie_card_date"
-            app:layout_constraintEnd_toStartOf="@id/tv_movie_card_rating_label"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_movie_card_poster"
             tools:text="Довод" />
@@ -45,26 +43,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_movie_card_title"
             tools:text="26 августа 2020‎" />
-
-        <!--<TextView
-            android:id="@+id/tv_movie_card_popularity"
-            style="@style/GeekTheme.Discover.Card.Popularity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_movie_card_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_movie_card_date"
-            tools:text="4.8" />-->
 
         <TextView
             android:id="@+id/tv_movie_card_adult_label"
             style="@style/GeekTheme.Discover.Card.AdultLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_small_8"
-            android:layout_marginEnd="@dimen/spacing_small_8"
+            android:layout_marginTop="@dimen/spacing_tiny_4"
+            android:layout_marginEnd="@dimen/spacing_tiny_4"
             android:background="@drawable/adult_label_bg"
             android:text="@string/discover_card_adult_label_text"
             android:visibility="gone"
@@ -77,14 +64,14 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="@dimen/spacing_tiny_4"
+            android:layout_marginBottom="@dimen/spacing_tiny_4"
             app:back_color="@color/colorBackground"
             app:text_color="@color/colorTextLighter"
             app:strip_width="2dp"
             app:strip_space="3dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_movie_card_poster"
-            app:layout_constraintTop_toBottomOf="@id/iv_movie_card_poster"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:rating="70" />
+            app:layout_constraintEnd_toEndOf="@id/iv_movie_card_poster"
+            tools:rating="80" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -103,6 +103,15 @@ constructor(
             height / 2F + textPaint.textSize / 2.5F,
             textPaint
         )
+        stripPaint.alpha = 125
+        canvas?.drawArc(
+            stripRect,
+            0F,
+            360F,
+            false,
+            stripPaint
+        )
+        stripPaint.alpha = 255
         canvas?.drawArc(
             stripRect,
             -90F,

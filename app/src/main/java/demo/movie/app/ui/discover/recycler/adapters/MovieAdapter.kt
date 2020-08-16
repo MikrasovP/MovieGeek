@@ -9,10 +9,13 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import demo.movie.app.R
 import demo.movie.app.model.dto.MoviePreviewDto
 import demo.movie.app.ui.custom.CircleRatingView
 import demo.movie.app.ui.discover.recycler.MovieDiffUtilCallback
+import demo.movie.app.util.convertToRating
 
 class MovieAdapter(
     private val onItemClickListener: (MoviePreviewDto) -> Unit
@@ -48,7 +51,6 @@ class MovieAdapter(
         private val poster : ImageView = movieCard.findViewById(R.id.iv_movie_card_poster)
         private val title : TextView = movieCard.findViewById(R.id.tv_movie_card_title)
         private val date : TextView = movieCard.findViewById(R.id.tv_movie_card_date)
-        //private val popularity : TextView = movieCard.findViewById(R.id.tv_movie_card_popularity)
         private val adultLabel : TextView = movieCard.findViewById(R.id.tv_movie_card_adult_label)
         private val ratingLabel : CircleRatingView = movieCard.findViewById(R.id.tv_movie_card_rating_label)
 
@@ -59,14 +61,20 @@ class MovieAdapter(
         }
 
         fun bind(movie: MoviePreviewDto) {
-            //Glide encapsulates such logic, so it's better to remove this "if"
-            if (movie.poster_path != "")
-                Glide.with(movieCard).load(movie.poster_path).into(poster)
+            val requestOption = RequestOptions()
+                .placeholder(R.drawable.card_poster_fallback)
+                .fallback(R.drawable.card_poster_fallback)
+                .error(R.drawable.card_poster_fallback)
+
+            Glide.with(movieCard)
+                .load(movie.poster_path)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .apply(requestOption)
+                .into(poster)
             title.text = movie.name
             date.text = movie.firs_air_date
-            //popularity.text = movie.popularity.toString()
             adultLabel.visibility = if (movie.adult) View.VISIBLE else View.GONE
-            ratingLabel.setRating((movie.popularity * 20).toInt())
+            ratingLabel.setRating(convertToRating(movie.popularity))
         }
     }
 
