@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">MovieGeek</string>
+
     <string name="menu_item_movie">Movie</string>
     <string name="menu_item_tv_series">TV</string>
     <string name="menu_item_profile">Profile</string>
+
+    <string name="discover_movies_toolbar_title">Discover movies</string>
+    <string name="discover_movies_popular">What\'s Popular</string>
+    <string name="discover_movies_trending">Trending</string>
+    <string name="discover_movies_top_rated">Top Rated</string>
+
+    <string name="discover_tv_series_toolbar_title">Discover TV series</string>
+    <string name="discover_tv_series_popular">What\'s Popular</string>
+    <string name="discover_tv_series_trending">Trending</string>
+    <string name="discover_tv_series_top_rated">Top Rated</string>
+
+    <string name="discover_card_adult_label_text">18+</string>
 </resources>
