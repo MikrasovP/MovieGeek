@@ -15,7 +15,7 @@ import demo.movie.app.R
 import demo.movie.app.model.dto.MoviePreviewDto
 import demo.movie.app.ui.custom.CircleRatingView
 import demo.movie.app.ui.discover.recycler.MovieDiffUtilCallback
-import demo.movie.app.util.convertToRating
+import demo.movie.app.util.RatingConverter
 
 class MovieAdapter(
     private val onItemClickListener: (MoviePreviewDto) -> Unit
@@ -48,11 +48,12 @@ class MovieAdapter(
         onItemClickListener: (MoviePreviewDto) -> Unit
     ) : RecyclerView.ViewHolder(movieCard) {
 
-        private val poster : ImageView = movieCard.findViewById(R.id.iv_movie_card_poster)
-        private val title : TextView = movieCard.findViewById(R.id.tv_movie_card_title)
-        private val date : TextView = movieCard.findViewById(R.id.tv_movie_card_date)
-        private val adultLabel : TextView = movieCard.findViewById(R.id.tv_movie_card_adult_label)
-        private val ratingLabel : CircleRatingView = movieCard.findViewById(R.id.tv_movie_card_rating_label)
+        private val poster: ImageView = movieCard.findViewById(R.id.iv_movie_card_poster)
+        private val title: TextView = movieCard.findViewById(R.id.tv_movie_card_title)
+        private val date: TextView = movieCard.findViewById(R.id.tv_movie_card_date)
+        private val adultLabel: TextView = movieCard.findViewById(R.id.tv_movie_card_adult_label)
+        private val ratingLabel: CircleRatingView =
+            movieCard.findViewById(R.id.tv_movie_card_rating_label)
 
         init {
             movieCard.setOnClickListener {
@@ -74,7 +75,9 @@ class MovieAdapter(
             title.text = movie.name
             date.text = movie.firs_air_date
             adultLabel.visibility = if (movie.adult) View.VISIBLE else View.GONE
-            ratingLabel.setRating(convertToRating(movie.popularity))
+            ratingLabel.setRating(
+                RatingConverter.convertFromServerFormatToLocal(movie.popularity)
+            )
         }
     }
 
