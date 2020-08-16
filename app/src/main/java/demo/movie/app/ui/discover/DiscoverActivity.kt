@@ -3,6 +3,7 @@ package demo.movie.app.ui.discover
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
 import kotlinx.android.synthetic.main.discover_activity.*
@@ -20,7 +21,6 @@ class DiscoverActivity : DaggerAppCompatActivity() {
         val navHostFragment : NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-
-        NavigationUI.setupWithNavController(nav_view, navHostFragment.navController)
+        nav_view.setupWithNavController(navHostFragment.navController)
     }
 }
