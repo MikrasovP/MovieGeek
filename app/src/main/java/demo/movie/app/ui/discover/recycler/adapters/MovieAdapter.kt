@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import demo.movie.app.R
 import demo.movie.app.model.dto.MoviePreviewDto
+import demo.movie.app.ui.custom.CircleRatingView
 import demo.movie.app.ui.discover.recycler.MovieDiffUtilCallback
 
 class MovieAdapter(
@@ -47,8 +48,9 @@ class MovieAdapter(
         private val poster : ImageView = movieCard.findViewById(R.id.iv_movie_card_poster)
         private val title : TextView = movieCard.findViewById(R.id.tv_movie_card_title)
         private val date : TextView = movieCard.findViewById(R.id.tv_movie_card_date)
-        private val popularity : TextView = movieCard.findViewById(R.id.tv_movie_card_popularity)
+        //private val popularity : TextView = movieCard.findViewById(R.id.tv_movie_card_popularity)
         private val adultLabel : TextView = movieCard.findViewById(R.id.tv_movie_card_adult_label)
+        private val ratingLabel : CircleRatingView = movieCard.findViewById(R.id.tv_movie_card_rating_label)
 
         init {
             movieCard.setOnClickListener {
@@ -62,8 +64,9 @@ class MovieAdapter(
                 Glide.with(movieCard).load(movie.poster_path).into(poster)
             title.text = movie.name
             date.text = movie.firs_air_date
-            popularity.text = movie.popularity.toString()
+            //popularity.text = movie.popularity.toString()
             adultLabel.visibility = if (movie.adult) View.VISIBLE else View.GONE
+            ratingLabel.setRating((movie.popularity * 20).toInt())
         }
     }
 
