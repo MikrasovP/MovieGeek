@@ -20,4 +20,31 @@
         <item name="android:paddingEnd">@dimen/discover_subtitle_side_padding_10</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+
+    <style name="GeekTheme.Discover.Card" />
+
+    <style name="GeekTheme.Discover.Card.Title">
+        <item name="android:textColor">@color/colorTextLighter</item>
+        <item name="android:textSize">@dimen/font_normal_16</item>
+        <item name="android:paddingStart">@dimen/spacing_small_8</item>
+        <item name="android:paddingEnd">@dimen/spacing_small_8</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:minLines">2</item>
+    </style>
+
+    <style name="GeekTheme.Discover.Card.Date">
+        <item name="android:textColor">@color/colorTextDarker</item>
+        <item name="android:textSize">@dimen/font_normal_14</item>
+        <item name="android:paddingStart">@dimen/spacing_small_8</item>
+        <item name="android:paddingEnd">@dimen/spacing_small_8</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="GeekTheme.Discover.Card.AdultLabel">
+        <item name="android:textColor">@color/colorTextLighter</item>
+        <item name="android:textSize">@dimen/font_normal_14</item>
+        <item name="android:alpha">@dimen/adult_label_alpha</item>
+        <item name="android:paddingStart">@dimen/spacing_tiny_4</item>
+        <item name="android:paddingEnd">@dimen/spacing_tiny_4</item>
+    </style>
 </resources>
