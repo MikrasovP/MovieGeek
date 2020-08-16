@@ -2,7 +2,6 @@ package demo.movie.app.ui.discover
 
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
