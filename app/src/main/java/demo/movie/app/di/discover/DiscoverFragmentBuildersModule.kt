@@ -1,10 +1,10 @@
 package demo.movie.app.di.discover
 
 import dagger.Binds
-import dagger.BindsInstance
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
+import demo.movie.app.di.scopes.DiscoverScope
 import demo.movie.app.ui.discover.movie.MovieContract
 import demo.movie.app.ui.discover.movie.MovieFragment
 import demo.movie.app.ui.discover.movie.MoviePresenter
@@ -15,15 +15,17 @@ import demo.movie.app.ui.discover.tv.TvFragment
 abstract class DiscoverFragmentBuildersModule {
 
     companion object {
+        @DiscoverScope
         @Provides
         fun providesMoviePresenter() = MoviePresenter()
     }
 
-    @ContributesAndroidInjector
-    abstract fun contributeMovieFragment(): MovieFragment
-
+    @DiscoverScope
     @Binds
     abstract fun provideMoviePresenter(moviePresenter: MoviePresenter): MovieContract.MoviePresenter
+
+    @ContributesAndroidInjector
+    abstract fun contributeMovieFragment(): MovieFragment
 
     @ContributesAndroidInjector
     abstract fun contributeTvFragment(): TvFragment

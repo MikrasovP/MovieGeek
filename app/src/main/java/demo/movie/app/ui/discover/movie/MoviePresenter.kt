@@ -1,9 +1,38 @@
 package demo.movie.app.ui.discover.movie
 
 import demo.movie.app.model.dto.MoviePreviewDto
+import demo.movie.app.model.services.NetworkService
 import demo.movie.app.ui.mvp.PresenterBase
+import javax.inject.Inject
 
 class MoviePresenter : PresenterBase<MovieContract.MovieView>(), MovieContract.MoviePresenter {
+
+    @Inject
+    lateinit var networkService: NetworkService
+
+    override fun getPopular() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTrending() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTopRated() {
+        TODO("Not yet implemented")
+    }
+
+    override fun refreshPopular() {
+        TODO("Not yet implemented")
+    }
+
+    override fun refreshTrending() {
+        TODO("Not yet implemented")
+    }
+
+    override fun refreshTopRated() {
+        TODO("Not yet implemented")
+    }
 
     override fun viewIsReady() {
         testRecyclers()

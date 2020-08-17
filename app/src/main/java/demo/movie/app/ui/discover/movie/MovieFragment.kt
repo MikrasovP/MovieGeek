@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.MoviePreviewDto
-import demo.movie.app.ui.BaseApp
 import demo.movie.app.ui.discover.recycler.adapters.MovieAdapter
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
 import javax.inject.Inject
