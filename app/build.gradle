@@ -24,6 +24,10 @@ android {
         }
     }
 
+    buildTypes.each {
+        it.buildConfigField 'String', 'TMDB_API_V3_KEY', MyTheMovieDBApiToken
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

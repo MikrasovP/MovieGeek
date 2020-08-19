@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.MoviePreviewDto
 import demo.movie.app.ui.discover.recycler.adapters.MovieAdapter
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
+import javax.inject.Inject
 
-class MovieFragment : Fragment(), MovieContract.MovieView {
+class MovieFragment : DaggerFragment(), MovieContract.MovieView {
+
+    @Inject
+    lateinit var presenter: MoviePresenter
 
     private val adapterPopularMovies = MovieAdapter {
         showMovieDetail(it)
@@ -30,6 +34,9 @@ class MovieFragment : Fragment(), MovieContract.MovieView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        presenter.attachView(this)
+        presenter.viewIsReady()
+
         return inflater.inflate(R.layout.discover_movies_fragment, container, false)
     }
 
@@ -37,7 +44,12 @@ class MovieFragment : Fragment(), MovieContract.MovieView {
         super.onActivityCreated(savedInstanceState)
         retainInstance = true
         initRecyclers()
-        testRecyclers()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        presenter.detachView()
     }
 
     private fun initRecyclers() {
@@ -66,24 +78,6 @@ class MovieFragment : Fragment(), MovieContract.MovieView {
                 false
             )
         }
-    }
-
-    /**
-     * TODO - move this function to Presenter
-     *
-     */
-    private fun testRecyclers(){
-        val data: List<MoviePreviewDto> = listOf(
-            MoviePreviewDto(1, true, 4.8, "Довод", "Tenet", "20 августа 2020", "https://upload.wikimedia.org/wikipedia/ru/5/56/Tenet_%28poster%29.jpg"),
-            MoviePreviewDto(2, false, 3.7, "Начало", "Inception", "20 августа 2020", "https://upload.wikimedia.org/wikipedia/ru/b/bc/Poster_Inception_film_2010.jpg"),
-            MoviePreviewDto(3, true, 2.6, "Однажды в... Голливуде", "Once upon a time in... Hollywood", "20 августа 2020", "https://kinohod.ru/o/72/ba/72ba9feb-2029-45e5-8e42-9d101df11160.jpg"),
-            MoviePreviewDto(4, false, 1.5, "Криминальное чтиво", "Pulp fiction", "20 августа 2020", ""),
-            MoviePreviewDto(5, true, 0.4, "Титаник", "Titanic", "20 августа 2020", "https://sun1-14.userapi.com/impf/c824201/v824201969/173424/ayWCFmi538s.jpg?size=200x0&quality=90&sign=b461a01af900c4374512c2b13455c25d&ava=1")
-        )
-
-        showPopular(data)
-        showTrending(data)
-        showTopRated(data)
     }
 
     override fun showPopular(popularMovieList: List<MoviePreviewDto>) {
