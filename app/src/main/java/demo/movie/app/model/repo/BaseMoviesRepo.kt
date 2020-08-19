@@ -1,16 +1,17 @@
 package demo.movie.app.model.repo
 
 import demo.movie.app.model.dto.MoviePreviewDto
+import demo.movie.app.model.dto.MoviesResponseResult
 import io.reactivex.rxjava3.core.Observable
 
 interface BaseMoviesRepo {
 
-    fun getPopularMovies(): Observable<List<MoviePreviewDto>>
+    fun getPopularMovies(): Observable<MoviesResponseResult>
 
-    fun getTrendingPerWeek(): Observable<List<MoviePreviewDto>>
+    fun getTrendingPerWeek(): Observable<MoviesResponseResult>
 
-    fun getTrendingPerDay(): Observable<List<MoviePreviewDto>>
+    fun getTrendingPerDay(): Observable<MoviesResponseResult>
 
-    fun getTopRated(): Observable<List<MoviePreviewDto>>
+    fun getTopRated(): Observable<MoviesResponseResult>
 
 }

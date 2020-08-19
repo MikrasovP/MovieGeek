@@ -35,7 +35,6 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         savedInstanceState: Bundle?
     ): View? {
         presenter.attachView(this)
-        presenter.viewIsReady()
 
         return inflater.inflate(R.layout.discover_movies_fragment, container, false)
     }
@@ -44,6 +43,8 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         super.onActivityCreated(savedInstanceState)
         retainInstance = true
         initRecyclers()
+
+        presenter.viewIsReady()
     }
 
     override fun onDestroyView() {
@@ -93,11 +94,15 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     }
 
     override fun showLoadError() {
-        TODO("Not yet implemented")
+        movies_recyclers_sv.visibility = View.INVISIBLE
+        load_spinner_pb.visibility = View.INVISIBLE
+        load_error_tv.visibility = View.VISIBLE
     }
 
     override fun showLoadingProgressBar() {
-        TODO("Not yet implemented")
+        movies_recyclers_sv.visibility = View.INVISIBLE
+        load_spinner_pb.visibility = View.VISIBLE
+        load_error_tv.visibility = View.INVISIBLE
     }
 
     override fun showReloadError() {

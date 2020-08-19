@@ -1,25 +1,56 @@
 package demo.movie.app.ui.discover.movie
 
+import android.util.Log
 import demo.movie.app.model.dto.MoviePreviewDto
 import demo.movie.app.model.repo.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieView>(), MovieContract.MoviePresenter {
+
+    companion object {
+        private const val TAG = "MoviePresenter"
+    }
 
     @Inject
     lateinit var moviesRepo: BaseMoviesRepo
 
     override fun getPopular() {
-        TODO("Not yet implemented")
+        moviesRepo.getPopularMovies()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view?.showPopular(it.results)
+            }, {
+                view?.showLoadError()
+                Log.e(TAG, "getPopular: load error")
+            })
     }
 
     override fun getTrending() {
-        TODO("Not yet implemented")
+        moviesRepo.getTrendingPerDay()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view?.showTrending(it.results)
+            }, {
+                view?.showLoadError()
+                Log.e(TAG, "getTrending: ", it)
+            })
     }
 
     override fun getTopRated() {
-        TODO("Not yet implemented")
+        moviesRepo.getTopRated()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view?.showTopRated(it.results)
+            }, {
+                view?.showLoadError()
+                Log.e(TAG, "getTopRated: ", it)
+            })
     }
 
     override fun refreshPopular() {
@@ -35,7 +66,11 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
     }
 
     override fun viewIsReady() {
-        testRecyclers()
+        view?.showLoadingProgressBar()
+
+        getPopular()
+        getTopRated()
+        getTrending()
     }
 
     private fun testRecyclers(){

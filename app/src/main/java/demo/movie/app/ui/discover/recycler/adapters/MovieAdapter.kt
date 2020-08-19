@@ -15,6 +15,7 @@ import demo.movie.app.R
 import demo.movie.app.model.dto.MoviePreviewDto
 import demo.movie.app.ui.custom.CircleRatingView
 import demo.movie.app.ui.discover.recycler.MovieDiffUtilCallback
+import demo.movie.app.util.Constants
 import demo.movie.app.util.RatingConverter
 
 class MovieAdapter(
@@ -67,8 +68,9 @@ class MovieAdapter(
                 .fallback(R.drawable.card_poster_fallback)
                 .error(R.drawable.card_poster_fallback)
 
+            //TODO: fix image loading, move it out
             Glide.with(movieCard)
-                .load(movie.poster_path)
+                .load(Constants.BASE_URL.dropLast(1) + movie.poster_path)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .apply(requestOption)
                 .into(poster)
@@ -76,7 +78,7 @@ class MovieAdapter(
             date.text = movie.firs_air_date
             adultLabel.visibility = if (movie.adult) View.VISIBLE else View.GONE
             ratingLabel.setRating(
-                RatingConverter.convertFromServerFormatToLocal(movie.popularity)
+                RatingConverter.convertFromServerFormatToLocal(movie.voteAverage)
             )
         }
     }

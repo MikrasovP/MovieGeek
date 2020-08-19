@@ -7,8 +7,8 @@ data class MoviePreviewDto(
     val id: Int,
     @SerializedName("adult")
     val adult: Boolean,
-    @SerializedName("popularity")
-    val popularity: Double,
+    @SerializedName("vote_average")
+    val voteAverage: Double,
     @SerializedName("name")
     val name: String,
     @SerializedName("original_name")
