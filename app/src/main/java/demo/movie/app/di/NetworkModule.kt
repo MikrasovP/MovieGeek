@@ -1,8 +1,10 @@
 package demo.movie.app.di
 
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import demo.movie.app.model.api.MoviesApi
+import demo.movie.app.model.services.BaseNetworkService
 import demo.movie.app.model.services.NetworkService
 import demo.movie.app.util.Constants
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -14,13 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+abstract class NetworkModule {
 
     companion object {
-        @Singleton
-        @Provides
-        fun provideNetworkService() = NetworkService()
-
         @Singleton
         @Provides
         fun provideMoviesApi(retrofit: Retrofit): MoviesApi =
@@ -45,6 +43,8 @@ class NetworkModule {
         }
     }
 
-
+    @Singleton
+    @Binds
+    abstract fun bindBaseNetworkService(networkService: NetworkService): BaseNetworkService
 
 }

@@ -10,7 +10,12 @@ import demo.movie.app.ui.discover.DiscoverActivity
 abstract class ActivityBuildersModule {
 
     @DiscoverScope
-    @ContributesAndroidInjector(modules = [DiscoverFragmentBuildersModule::class])
+    @ContributesAndroidInjector(
+        modules = [
+            DiscoverFragmentBuildersModule::class,
+            RepoModule::class
+        ]
+    )
     abstract fun contributeDiscoverActivity(): DiscoverActivity
 
 }

@@ -14,15 +14,9 @@ import demo.movie.app.ui.discover.tv.TvFragment
 @Module
 abstract class DiscoverFragmentBuildersModule {
 
-    companion object {
-        @DiscoverScope
-        @Provides
-        fun providesMoviePresenter() = MoviePresenter()
-    }
-
     @DiscoverScope
     @Binds
-    abstract fun provideMoviePresenter(moviePresenter: MoviePresenter): MovieContract.MoviePresenter
+    abstract fun bindMoviePresenter(moviePresenter: MoviePresenter): MovieContract.MoviePresenter
 
     @ContributesAndroidInjector
     abstract fun contributeMovieFragment(): MovieFragment

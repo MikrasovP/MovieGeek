@@ -7,23 +7,24 @@ import io.reactivex.rxjava3.core.Observable
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class NetworkService {
+class NetworkService @Inject constructor() : BaseNetworkService {
 
     @Inject
     lateinit var retrofit: Retrofit
+
     @Inject
     lateinit var moviesApi: MoviesApi
 
-    fun getPopularMovies(): Observable<List<MoviePreviewDto>> =
+    override fun getPopularMovies(): Observable<List<MoviePreviewDto>> =
         moviesApi.getPopular(API_KEY)
 
-    fun getTrendingPerWeek(): Observable<List<MoviePreviewDto>> =
+    override fun getTrendingPerWeek(): Observable<List<MoviePreviewDto>> =
         moviesApi.getTrendingPerWeek(API_KEY)
 
-    fun getTrendingPerDay(): Observable<List<MoviePreviewDto>> =
+    override fun getTrendingPerDay(): Observable<List<MoviePreviewDto>> =
         moviesApi.getTrendingPerDay(API_KEY)
 
-    fun getTopRated(): Observable<List<MoviePreviewDto>> =
+    override fun getTopRated(): Observable<List<MoviePreviewDto>> =
         moviesApi.getTopRated(API_KEY)
 
 }

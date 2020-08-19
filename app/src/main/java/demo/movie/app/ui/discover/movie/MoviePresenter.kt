@@ -1,14 +1,14 @@
 package demo.movie.app.ui.discover.movie
 
 import demo.movie.app.model.dto.MoviePreviewDto
-import demo.movie.app.model.services.NetworkService
+import demo.movie.app.model.repo.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
 import javax.inject.Inject
 
-class MoviePresenter : PresenterBase<MovieContract.MovieView>(), MovieContract.MoviePresenter {
+class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieView>(), MovieContract.MoviePresenter {
 
     @Inject
-    lateinit var networkService: NetworkService
+    lateinit var moviesRepo: BaseMoviesRepo
 
     override fun getPopular() {
         TODO("Not yet implemented")
