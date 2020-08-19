@@ -18,7 +18,7 @@ Application requires Android 5.0 (Lolipop) or higher
 
 - Two branches with `MVP` and `MVVM` patterns
 
-- The code is covered with `unit-tests`
+- The code is covered with `unit tests`
 
 - Usage of `dependecy injection`
 
@@ -26,9 +26,9 @@ Application requires Android 5.0 (Lolipop) or higher
 
 - [Dagger 2](https://github.com/google/dagger)
 
-- [Rerofit](https://square.github.io/retrofit/)
+- [Retrofit](https://square.github.io/retrofit/)
 
-- [RxJava3](https://github.com/ReactiveX/RxJava)
+- [RxJava 3](https://github.com/ReactiveX/RxJava)
 
 - [Android Jetpack Navigation](https://developer.android.com/guide/navigation)
 
