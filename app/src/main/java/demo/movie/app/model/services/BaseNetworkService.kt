@@ -1,7 +1,6 @@
 package demo.movie.app.model.services
 
-import demo.movie.app.model.dto.MoviePreviewDto
-import demo.movie.app.model.dto.MoviesResponseResult
+import demo.movie.app.model.dto.movie.MoviesResponseResult
 import io.reactivex.rxjava3.core.Observable
 
 interface BaseNetworkService {

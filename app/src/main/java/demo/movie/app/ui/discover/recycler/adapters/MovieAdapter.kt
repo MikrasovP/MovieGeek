@@ -3,23 +3,22 @@ package demo.movie.app.ui.discover.recycler.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import demo.movie.app.R
-import demo.movie.app.model.dto.MoviePreviewDto
-import demo.movie.app.ui.custom.CircleRatingView
+import demo.movie.app.di.DaggerAppComponent
+import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.ui.discover.recycler.MovieDiffUtilCallback
-import demo.movie.app.util.Constants
 import demo.movie.app.util.RatingConverter
+import demo.movie.app.util.image.BaseImageLoader
+import demo.movie.app.util.image.ImageSize
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.movie_card.view.*
 
 class MovieAdapter(
-    private val onItemClickListener: (MoviePreviewDto) -> Unit
+    private val onItemClickListener: (MoviePreviewDto) -> Unit,
+    private val imageLoader: BaseImageLoader
 ) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>() {
 
     private var items: List<MoviePreviewDto> = listOf()
@@ -45,39 +44,32 @@ class MovieAdapter(
     override fun getItemCount(): Int = items.size
 
     inner class MoviesViewHolder(
-        private val movieCard: CardView,
+        override val containerView: View,
         onItemClickListener: (MoviePreviewDto) -> Unit
-    ) : RecyclerView.ViewHolder(movieCard) {
-
-        private val poster: ImageView = movieCard.findViewById(R.id.iv_movie_card_poster)
-        private val title: TextView = movieCard.findViewById(R.id.tv_movie_card_title)
-        private val date: TextView = movieCard.findViewById(R.id.tv_movie_card_date)
-        private val adultLabel: TextView = movieCard.findViewById(R.id.tv_movie_card_adult_label)
-        private val ratingLabel: CircleRatingView =
-            movieCard.findViewById(R.id.tv_movie_card_rating_label)
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         init {
-            movieCard.setOnClickListener {
+            DaggerAppComponent.builder()
+
+            containerView.setOnClickListener {
                 onItemClickListener(items[adapterPosition])
             }
         }
 
         fun bind(movie: MoviePreviewDto) {
-            val requestOption = RequestOptions()
-                .placeholder(R.drawable.card_poster_fallback)
-                .fallback(R.drawable.card_poster_fallback)
-                .error(R.drawable.card_poster_fallback)
 
-            //TODO: fix image loading, move it out
-            Glide.with(movieCard)
-                .load(Constants.BASE_URL.dropLast(1) + movie.poster_path)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .apply(requestOption)
-                .into(poster)
-            title.text = movie.name
-            date.text = movie.firs_air_date
-            adultLabel.visibility = if (movie.adult) View.VISIBLE else View.GONE
-            ratingLabel.setRating(
+            imageLoader.loadImagePoster(
+                viewWith = containerView,
+                imageRawPath = movie.poster_path,
+                imageSize = ImageSize.ORIGINAL,
+                viewInto = containerView.iv_movie_card_poster
+            )
+
+            containerView.tv_movie_card_title.text = movie.title
+            containerView.tv_movie_card_date.text = movie.release_date
+            containerView.tv_movie_card_adult_label.visibility =
+                if (movie.adult) View.VISIBLE else View.GONE
+            containerView.tv_movie_card_rating_label.setRating(
                 RatingConverter.convertFromServerFormatToLocal(movie.voteAverage)
             )
         }

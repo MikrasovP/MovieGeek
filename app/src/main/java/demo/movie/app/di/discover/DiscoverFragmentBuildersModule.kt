@@ -4,6 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
+import demo.movie.app.di.ImageLoadModule
 import demo.movie.app.di.scopes.DiscoverScope
 import demo.movie.app.ui.discover.movie.MovieContract
 import demo.movie.app.ui.discover.movie.MovieFragment
@@ -18,11 +19,14 @@ abstract class DiscoverFragmentBuildersModule {
     @Binds
     abstract fun bindMoviePresenter(moviePresenter: MoviePresenter): MovieContract.MoviePresenter
 
-    @ContributesAndroidInjector
+
+    @ContributesAndroidInjector()
     abstract fun contributeMovieFragment(): MovieFragment
+
 
     @ContributesAndroidInjector
     abstract fun contributeTvFragment(): TvFragment
+
 
     @ContributesAndroidInjector
     abstract fun contributeProfileFragment(): ProfileFragment
