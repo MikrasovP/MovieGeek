@@ -3,7 +3,7 @@ package demo.movie.app.ui.discover.movie
 import android.util.Log
 import demo.movie.app.model.dto.movie.MoviesListsWrapper
 import demo.movie.app.model.dto.movie.MoviesResponseResult
-import demo.movie.app.model.repo.BaseMoviesRepo
+import demo.movie.app.model.repo.movies.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
