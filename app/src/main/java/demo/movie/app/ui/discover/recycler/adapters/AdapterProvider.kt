@@ -3,7 +3,7 @@ package demo.movie.app.ui.discover.recycler.adapters
 import demo.movie.app.util.image.BaseImageLoader
 import javax.inject.Inject
 
-class AdapterProvider @Inject constructor() : BaseAdapterProvider(){
+class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
 
     private var adapterPopularMovies: MovieAdapter? = null
 
@@ -11,36 +11,66 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider(){
 
     private var adapterTopRatedMovies: MovieAdapter? = null
 
+    private var adapterPopularTvSeries: TvSeriesAdapter? = null
+
+    private var adapterTrendingTvSeries: TvSeriesAdapter? = null
+
+    private var adapterTopRatedTvSeries: TvSeriesAdapter? = null
+
     @Inject
     lateinit var imageLoader: BaseImageLoader
 
-    override fun getPopularMoviesAdapter(): MovieAdapter {
-        return if (adapterPopularMovies == null){
+    override fun getPopularMoviesAdapter(): MovieAdapter =
+        if (adapterPopularMovies == null) {
             val adapter = MovieAdapter(onMovieClick, imageLoader)
             adapterPopularMovies = adapter
             adapter
         } else {
             adapterPopularMovies as MovieAdapter
         }
-    }
 
-    override fun getTrendingMoviesAdapter(): MovieAdapter {
-        return if (adapterTrendingMovies == null){
+    override fun getTrendingMoviesAdapter(): MovieAdapter =
+        if (adapterTrendingMovies == null) {
             val adapter = MovieAdapter(onMovieClick, imageLoader)
             adapterTrendingMovies = adapter
             adapter
         } else {
             adapterTrendingMovies as MovieAdapter
         }
-    }
 
-    override fun getTopRatedMoviesAdapter(): MovieAdapter {
-        return if (adapterTopRatedMovies == null){
+    override fun getTopRatedMoviesAdapter(): MovieAdapter =
+        if (adapterTopRatedMovies == null) {
             val adapter = MovieAdapter(onMovieClick, imageLoader)
             adapterTopRatedMovies = adapter
             adapter
         } else {
             adapterTopRatedMovies as MovieAdapter
         }
-    }
+
+    override fun getPopularTvSeriesAdapter(): TvSeriesAdapter =
+        if(adapterPopularTvSeries== null) {
+            val adapter = TvSeriesAdapter(onTvSeriesClick, imageLoader)
+            adapterPopularTvSeries = adapter
+            adapter
+        } else {
+            adapterPopularTvSeries as TvSeriesAdapter
+        }
+
+    override fun getTrendingTvSeriesAdapter(): TvSeriesAdapter =
+        if(adapterTrendingTvSeries== null) {
+            val adapter = TvSeriesAdapter(onTvSeriesClick, imageLoader)
+            adapterTrendingTvSeries = adapter
+            adapter
+        } else {
+            adapterTrendingTvSeries as TvSeriesAdapter
+        }
+
+    override fun getTopRatedTvSeriesAdapter(): TvSeriesAdapter =
+        if(adapterTopRatedTvSeries== null) {
+            val adapter = TvSeriesAdapter(onTvSeriesClick, imageLoader)
+            adapterTopRatedTvSeries = adapter
+            adapter
+        } else {
+            adapterTopRatedTvSeries as TvSeriesAdapter
+        }
 }

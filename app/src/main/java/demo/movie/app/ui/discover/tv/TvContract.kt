@@ -23,7 +23,7 @@ interface TvContract {
 
         fun showData()
 
-        fun showTvDetail(movie: TvPreviewDto)
+        fun showTvDetail(tvSeries: TvPreviewDto)
 
     }
 

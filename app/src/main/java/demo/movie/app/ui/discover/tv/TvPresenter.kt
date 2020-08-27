@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.functions.Function3
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class TvPresenter : PresenterBase<TvContract.TvView>(), TvContract.TvPresenter {
+class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvContract.TvPresenter {
 
     companion object {
         private const val TAG = "TvPresenter"

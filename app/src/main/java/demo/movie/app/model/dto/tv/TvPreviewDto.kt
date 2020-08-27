@@ -7,11 +7,11 @@ data class TvPreviewDto(
     val id: Int,
     @SerializedName("vote_average")
     val voteAverage: Double,
-    @SerializedName("title")
+    @SerializedName("name")
     val title: String,
     @SerializedName("original_name")
     val original_name: String,
-    @SerializedName("release_date")
+    @SerializedName("first_air_date")
     val release_date: String,
     @SerializedName("poster_path")
     val poster_path: String

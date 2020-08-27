@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface TvSeriesApi {
-    @GET("/tv/popular")
+    @GET("tv/popular")
     fun getPopular(
         @Query("api_key") api_key: String
     ): Observable<TvResponseResult>

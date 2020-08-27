@@ -10,8 +10,6 @@ import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
-import demo.movie.app.ui.discover.recycler.adapters.MovieAdapter
-import demo.movie.app.util.image.BaseImageLoader
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
 import javax.inject.Inject
 
@@ -22,7 +20,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     }
 
     @Inject
-    lateinit var presenter: MoviePresenter
+    lateinit var presenter: MovieContract.MoviePresenter
 
     @Inject
     lateinit var adapterProvider: BaseAdapterProvider
@@ -96,14 +94,14 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     override fun showLoadError() {
         movies_recyclers_sv.visibility = View.INVISIBLE
-        load_spinner_pb.visibility = View.INVISIBLE
-        load_error_tv.visibility = View.VISIBLE
+        movies_load_spinner_pb.visibility = View.INVISIBLE
+        movies_load_error_tv.visibility = View.VISIBLE
     }
 
     override fun showLoadingProgressBar() {
         movies_recyclers_sv.visibility = View.INVISIBLE
-        load_spinner_pb.visibility = View.VISIBLE
-        load_error_tv.visibility = View.INVISIBLE
+        movies_load_spinner_pb.visibility = View.VISIBLE
+        movies_load_error_tv.visibility = View.INVISIBLE
     }
 
     override fun showReloadError() {
@@ -112,8 +110,8 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     override fun showData() {
         movies_recyclers_sv.visibility = View.VISIBLE
-        load_spinner_pb.visibility = View.INVISIBLE
-        load_error_tv.visibility = View.INVISIBLE
+        movies_load_spinner_pb.visibility = View.INVISIBLE
+        movies_load_error_tv.visibility = View.INVISIBLE
     }
 
     override fun showMovieDetail(movie: MoviePreviewDto) {

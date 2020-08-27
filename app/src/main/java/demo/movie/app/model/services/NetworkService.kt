@@ -32,20 +32,16 @@ class NetworkService @Inject constructor() : BaseNetworkService {
     override fun getTopRatedMovies(): Observable<MoviesResponseResult> =
         moviesApi.getTopRated(API_KEY)
 
-    override fun getPopularTv(): Observable<TvResponseResult> {
-        TODO("Not yet implemented")
-    }
+    override fun getPopularTv(): Observable<TvResponseResult> =
+        tvSeriesApi.getPopular(API_KEY)
 
-    override fun getTrendingPerDayTv(): Observable<TvResponseResult> {
-        TODO("Not yet implemented")
-    }
+    override fun getTrendingPerDayTv(): Observable<TvResponseResult> =
+        tvSeriesApi.getTrendingPerDay(API_KEY)
 
-    override fun getTrendingPerWeekTv(): Observable<TvResponseResult> {
-        TODO("Not yet implemented")
-    }
+    override fun getTrendingPerWeekTv(): Observable<TvResponseResult> =
+        tvSeriesApi.getTrendingPerWeek(API_KEY)
 
-    override fun getTopRatedTv(): Observable<TvResponseResult> {
-        TODO("Not yet implemented")
-    }
+    override fun getTopRatedTv(): Observable<TvResponseResult> =
+        tvSeriesApi.getTopRated(API_KEY)
 
 }

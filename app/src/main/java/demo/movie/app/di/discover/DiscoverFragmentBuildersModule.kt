@@ -13,7 +13,9 @@ import demo.movie.app.ui.discover.movie.MoviePresenter
 import demo.movie.app.ui.discover.profile.ProfileFragment
 import demo.movie.app.ui.discover.recycler.adapters.AdapterProvider
 import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.discover.tv.TvContract
 import demo.movie.app.ui.discover.tv.TvFragment
+import demo.movie.app.ui.discover.tv.TvPresenter
 
 @Module
 abstract class DiscoverFragmentBuildersModule {
@@ -21,6 +23,10 @@ abstract class DiscoverFragmentBuildersModule {
     @DiscoverScope
     @Binds
     abstract fun bindMoviePresenter(moviePresenter: MoviePresenter): MovieContract.MoviePresenter
+
+    @DiscoverScope
+    @Binds
+    abstract fun bindTvPresenter(tvPresenter: TvPresenter): TvContract.TvPresenter
 
     @DiscoverScope
     @Binds
