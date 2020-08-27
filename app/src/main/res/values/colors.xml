@@ -2,6 +2,7 @@
 <resources>
     <color name="colorBackground">#0C222A</color>
     <color name="colorBackgroundDarker">#081C22</color>
+    <color name="colorBackgroundLighter">#2A3E45</color>
     <color name="colorAccent">#EAE049</color>
     <color name="colorTextLighter">#F3F6F6</color>
     <color name="colorTextDarker">#374A5A</color>
