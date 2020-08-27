@@ -8,7 +8,7 @@ Android application for browsing movies and TV series, which uses [TMDb](https:/
 
 - Search and filter for movies, TVs, actors
 
-- Login to your TMDb account and bookmark the content you're intrested in
+- Login to your TMDb account and bookmark the content you're interested in
 
 ## Requirements
 
@@ -20,7 +20,7 @@ Application requires Android 5.0 (Lolipop) or higher
 
 - The code is covered with `unit tests`
 
-- Usage of `dependecy injection`
+- Usage of `dependency injection`
 
 ## Dependencies and libraries
 
