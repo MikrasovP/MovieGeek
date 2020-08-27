@@ -1,6 +1,7 @@
 package demo.movie.app.ui.discover.movie
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
+import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
 import demo.movie.app.ui.discover.recycler.adapters.MovieAdapter
 import demo.movie.app.util.image.BaseImageLoader
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
@@ -15,30 +17,23 @@ import javax.inject.Inject
 
 class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
+    companion object {
+        private const val TAG = "MovieFragment"
+    }
+
     @Inject
     lateinit var presenter: MoviePresenter
 
     @Inject
-    lateinit var imageLoader: BaseImageLoader
-
-    private lateinit var adapterPopularMovies: MovieAdapter
-
-    private lateinit var adapterTrendingMovies: MovieAdapter
-
-    private lateinit var adapterTopRatedMovies: MovieAdapter
+    lateinit var adapterProvider: BaseAdapterProvider
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         presenter.attachView(this)
-
-        adapterPopularMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
-
-        adapterTrendingMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
-
-        adapterTopRatedMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
 
         return inflater.inflate(R.layout.discover_movies_fragment, container, false)
     }
@@ -59,8 +54,10 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     private fun initRecyclers() {
 
+        adapterProvider.onMovieClick = { showMovieDetail(it) }
+
         popular_movies_rv.apply {
-            adapter = this@MovieFragment.adapterPopularMovies
+            adapter = adapterProvider.getPopularMoviesAdapter()
             layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -68,7 +65,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
             )
         }
         trending_movies_rv.apply {
-            adapter = this@MovieFragment.adapterTrendingMovies
+            adapter = adapterProvider.getTrendingMoviesAdapter()
             layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -76,7 +73,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
             )
         }
         top_movies_rv.apply {
-            adapter = this@MovieFragment.adapterTopRatedMovies
+            adapter = adapterProvider.getTopRatedMoviesAdapter()
             layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -86,15 +83,15 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     }
 
     override fun setPopular(popularMovieList: List<MoviePreviewDto>) {
-        adapterPopularMovies.updateData(popularMovieList)
+        adapterProvider.getPopularMoviesAdapter().updateData(popularMovieList)
     }
 
     override fun setTrending(trendingMovieList: List<MoviePreviewDto>) {
-        adapterTrendingMovies.updateData(trendingMovieList)
+        adapterProvider.getTrendingMoviesAdapter().updateData(trendingMovieList)
     }
 
     override fun setTopRated(topRatedMovieList: List<MoviePreviewDto>) {
-        adapterTopRatedMovies.updateData(topRatedMovieList)
+        adapterProvider.getTopRatedMoviesAdapter().updateData(topRatedMovieList)
     }
 
     override fun showLoadError() {
@@ -120,7 +117,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     }
 
     override fun showMovieDetail(movie: MoviePreviewDto) {
-        TODO("Navigate to movie info fragment")
+        Log.d(TAG, "showMovieDetail: $movie")
     }
 
 }
