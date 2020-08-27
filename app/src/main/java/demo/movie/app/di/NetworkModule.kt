@@ -28,7 +28,7 @@ abstract class NetworkModule {
         @Provides
         fun provideRetrofit(interceptor: Interceptor): Retrofit =
             Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(Constants.BASE_API_URL)
                 .client(OkHttpClient.Builder().addInterceptor(interceptor).build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

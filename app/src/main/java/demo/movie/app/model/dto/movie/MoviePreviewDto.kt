@@ -1,4 +1,4 @@
-package demo.movie.app.model.dto
+package demo.movie.app.model.dto.movie
 
 import com.google.gson.annotations.SerializedName
 
@@ -7,14 +7,14 @@ data class MoviePreviewDto(
     val id: Int,
     @SerializedName("adult")
     val adult: Boolean,
-    @SerializedName("popularity")
-    val popularity: Double,
-    @SerializedName("name")
-    val name: String,
+    @SerializedName("vote_average")
+    val voteAverage: Double,
+    @SerializedName("title")
+    val title: String,
     @SerializedName("original_name")
     val original_name: String,
-    @SerializedName("first_air_date")
-    val firs_air_date: String,
+    @SerializedName("release_date")
+    val release_date: String,
     @SerializedName("poster_path")
     val poster_path: String
 )

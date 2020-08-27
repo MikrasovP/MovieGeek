@@ -16,4 +16,5 @@
     <string name="discover_tv_series_top_rated">Top Rated</string>
 
     <string name="discover_card_adult_label_text">18+</string>
+    <string name="discover_load_error">An error occurred while loading data.\nPlease, check your internet connection.</string>
 </resources>

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import demo.movie.app.R
-import demo.movie.app.model.dto.MoviePreviewDto
+import demo.movie.app.model.dto.movie.MoviePreviewDto
 
 class TvFragment : Fragment(), TvContract.TvView {
 

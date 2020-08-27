@@ -6,6 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import demo.movie.app.ui.BaseApp
+import demo.movie.app.ui.discover.recycler.adapters.MovieAdapter
 import javax.inject.Singleton
 
 @Singleton
@@ -13,7 +14,8 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ActivityBuildersModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        ImageLoadModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BaseApp> {

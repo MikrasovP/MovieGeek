@@ -1,55 +1,71 @@
 package demo.movie.app.ui.discover.movie
 
-import demo.movie.app.model.dto.MoviePreviewDto
+import android.util.Log
+import demo.movie.app.model.dto.movie.MoviesListsWrapper
+import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.repo.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.Function3
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieView>(), MovieContract.MoviePresenter {
+class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieView>(),
+    MovieContract.MoviePresenter {
+
+    companion object {
+        private const val TAG = "MoviePresenter"
+    }
 
     @Inject
     lateinit var moviesRepo: BaseMoviesRepo
 
-    override fun getPopular() {
+
+    override fun getAllData() {
+        val topRatedMoviesObservable = moviesRepo.getTopRated()
+        val popularMoviesObservable = moviesRepo.getPopular()
+        val trendingMoviesObservable = moviesRepo.getTrendingPerDay()
+
+        Observable.combineLatest(
+            topRatedMoviesObservable,
+            popularMoviesObservable,
+            trendingMoviesObservable,
+            Function3 { topRated: MoviesResponseResult,
+                        popular: MoviesResponseResult,
+                        trending: MoviesResponseResult ->
+                MoviesListsWrapper(
+                    topRatedMovies = topRated.results,
+                    popularMovies = popular.results,
+                    trendingMovies = trending.results
+                )
+            })
+            .subscribeOn(Schedulers.io())
+            .doOnSubscribe {
+                view?.showLoadingProgressBar()
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                view?.setTopRated(it.topRatedMovies)
+                view?.setPopular(it.popularMovies)
+                view?.setTrending(it.trendingMovies)
+
+                view?.showData()
+            }, {
+                view?.showLoadError()
+                Log.e(TAG, "getAllData(): ", it)
+            })
+
+
+    }
+
+    override fun refreshAllData() {
         TODO("Not yet implemented")
     }
 
-    override fun getTrending() {
-        TODO("Not yet implemented")
-    }
-
-    override fun getTopRated() {
-        TODO("Not yet implemented")
-    }
-
-    override fun refreshPopular() {
-        TODO("Not yet implemented")
-    }
-
-    override fun refreshTrending() {
-        TODO("Not yet implemented")
-    }
-
-    override fun refreshTopRated() {
-        TODO("Not yet implemented")
-    }
 
     override fun viewIsReady() {
-        testRecyclers()
-    }
-
-    private fun testRecyclers(){
-        val data: List<MoviePreviewDto> = listOf(
-            MoviePreviewDto(1, true, 4.8, "Довод", "Tenet", "20 августа 2020", "https://upload.wikimedia.org/wikipedia/ru/5/56/Tenet_%28poster%29.jpg"),
-            MoviePreviewDto(2, false, 3.7, "Начало", "Inception", "20 августа 2020", "https://upload.wikimedia.org/wikipedia/ru/b/bc/Poster_Inception_film_2010.jpg"),
-            MoviePreviewDto(3, true, 2.6, "Однажды в... Голливуде", "Once upon a time in... Hollywood", "20 августа 2020", "https://kinohod.ru/o/72/ba/72ba9feb-2029-45e5-8e42-9d101df11160.jpg"),
-            MoviePreviewDto(4, false, 1.5, "Криминальное чтиво", "Pulp fiction", "20 августа 2020", ""),
-            MoviePreviewDto(5, true, 0.4, "Титаник", "Titanic", "20 августа 2020", "https://sun1-14.userapi.com/impf/c824201/v824201969/173424/ayWCFmi538s.jpg?size=200x0&quality=90&sign=b461a01af900c4374512c2b13455c25d&ava=1")
-        )
-
-        view?.showPopular(data)
-        view?.showTrending(data)
-        view?.showTopRated(data)
+        getAllData()
     }
 
     override fun destroy() {

@@ -15,7 +15,7 @@ class RatingConverterTest {
         private const val PROPER_SERVER_FORMAT_VALUE_100 = 10.0
         private const val EXPECTED_PROPER_SERVER_FORMAT_VALUE_100 = 100
 
-        private const val IMPROPER_SERVER_FORMAT_VALUE_0 = 0.0
+        private const val IMPROPER_SERVER_FORMAT_VALUE_MINUS_01 = -0.1
         private const val IMPROPER_SERVER_FORMAT_VALUE_110 = 11.0
 
         private const val PROPER_LOCAL_FORMAT_VALUE_1 = 1
@@ -53,7 +53,7 @@ class RatingConverterTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun testFromServerToLocal_ImproperData_1(){
-        RatingConverter.convertFromServerFormatToLocal(IMPROPER_SERVER_FORMAT_VALUE_0)
+        RatingConverter.convertFromServerFormatToLocal(IMPROPER_SERVER_FORMAT_VALUE_MINUS_01)
     }
 
     @Test(expected = IllegalArgumentException::class)

@@ -1,7 +1,7 @@
 package demo.movie.app.ui.discover.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import demo.movie.app.model.dto.MoviePreviewDto
+import demo.movie.app.model.dto.movie.MoviePreviewDto
 
 class MovieDiffUtilCallback(
     private val oldList: List<MoviePreviewDto>,

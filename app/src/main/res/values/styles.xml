@@ -6,7 +6,6 @@
         <item name="colorPrimaryDark">@color/colorBackgroundDarker</item>
         <item name="android:textColor">@color/colorTextLighter</item>
         <item name="android:textColorSecondary">@color/colorTextDarker</item>
-        <!--<item name="android:background">@color/colorBackground</item>-->
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:navigationBarColor">@color/colorBackgroundDarker</item>
         <item name="android:statusBarColor">@color/colorBackground</item>
