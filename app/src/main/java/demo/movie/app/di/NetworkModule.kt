@@ -4,6 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import demo.movie.app.model.api.MoviesApi
+import demo.movie.app.model.api.TvSeriesApi
 import demo.movie.app.model.services.BaseNetworkService
 import demo.movie.app.model.services.NetworkService
 import demo.movie.app.util.Constants
@@ -19,10 +20,16 @@ import javax.inject.Singleton
 abstract class NetworkModule {
 
     companion object {
+
         @Singleton
         @Provides
         fun provideMoviesApi(retrofit: Retrofit): MoviesApi =
             retrofit.create(MoviesApi::class.java)
+
+        @Singleton
+        @Provides
+        fun provideTvSeriesApi(retrofit: Retrofit): TvSeriesApi =
+            retrofit.create(TvSeriesApi::class.java)
 
         @Singleton
         @Provides

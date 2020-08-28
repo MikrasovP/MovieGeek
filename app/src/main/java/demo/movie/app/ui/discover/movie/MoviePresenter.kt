@@ -3,7 +3,7 @@ package demo.movie.app.ui.discover.movie
 import android.util.Log
 import demo.movie.app.model.dto.movie.MoviesListsWrapper
 import demo.movie.app.model.dto.movie.MoviesResponseResult
-import demo.movie.app.model.repo.BaseMoviesRepo
+import demo.movie.app.model.repo.movies.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -20,6 +20,8 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
 
     @Inject
     lateinit var moviesRepo: BaseMoviesRepo
+
+    private var isDataLoaded = false
 
 
     override fun getAllData() {
@@ -51,6 +53,7 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
                 view?.setTrending(it.trendingMovies)
 
                 view?.showData()
+                isDataLoaded = true
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
@@ -65,7 +68,10 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
 
 
     override fun viewIsReady() {
-        getAllData()
+        if (!isDataLoaded)
+            getAllData()
+        else
+            view?.showData()
     }
 
     override fun destroy() {

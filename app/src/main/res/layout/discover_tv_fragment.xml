@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,6 +16,8 @@
         app:titleTextColor="@color/colorTextLighter" />
 
     <ScrollView
+        android:id="@+id/tv_recyclers_sv"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_trending_tv_series" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_top_tv_series"
+                android:id="@+id/rv_top_rated_tv_series"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/discover_list_height"
                 android:orientation="horizontal"
@@ -88,5 +89,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/tv_series_load_spinner_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_series_load_error_tv"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/discover_load_error"
+        android:textColor="@color/colorTextDarker"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

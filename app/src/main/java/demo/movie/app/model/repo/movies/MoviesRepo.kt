@@ -1,4 +1,4 @@
-package demo.movie.app.model.repo
+package demo.movie.app.model.repo.movies
 
 import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.services.BaseNetworkService
@@ -14,12 +14,12 @@ class MoviesRepo @Inject constructor() : BaseMoviesRepo {
         networkService.getPopularMovies()
 
     override fun getTrendingPerWeek(): Observable<MoviesResponseResult> =
-        networkService.getTrendingPerWeek()
+        networkService.getTrendingPerWeekMovies()
 
     override fun getTrendingPerDay(): Observable<MoviesResponseResult> =
-        networkService.getTrendingPerDay()
+        networkService.getTrendingPerDayMovies()
 
     override fun getTopRated(): Observable<MoviesResponseResult> =
-        networkService.getTopRated()
+        networkService.getTopRatedMovies()
 
 }

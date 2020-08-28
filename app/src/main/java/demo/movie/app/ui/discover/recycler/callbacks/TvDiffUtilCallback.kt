@@ -1,11 +1,11 @@
-package demo.movie.app.ui.discover.recycler
+package demo.movie.app.ui.discover.recycler.callbacks
 
 import androidx.recyclerview.widget.DiffUtil
-import demo.movie.app.model.dto.movie.MoviePreviewDto
+import demo.movie.app.model.dto.tv.TvPreviewDto
 
-class MovieDiffUtilCallback(
-    private val oldList: List<MoviePreviewDto>,
-    private val newList: List<MoviePreviewDto>
+class TvDiffUtilCallback(
+    private val oldList: List<TvPreviewDto>,
+    private val newList: List<TvPreviewDto>
 ) : DiffUtil.Callback() {
     override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean =
         oldList[oldPos].id == newList[newPos].id
