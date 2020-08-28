@@ -1,6 +1,5 @@
 package demo.movie.app.ui.discover.tv
 
-import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.model.dto.tv.TvPreviewDto
 import demo.movie.app.ui.mvp.MvpPresenter
 import demo.movie.app.ui.mvp.MvpView

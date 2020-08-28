@@ -20,6 +20,8 @@ class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvC
     @Inject
     lateinit var tvRepo: BaseTvRepo
 
+    private var isDataLoaded = false
+
 
     override fun getAllData() {
         val topRatedMoviesObservable = tvRepo.getTopRated()
@@ -50,6 +52,7 @@ class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvC
                 view?.setTrending(it.trending)
 
                 view?.showData()
+                isDataLoaded = true
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
@@ -64,7 +67,10 @@ class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvC
 
 
     override fun viewIsReady() {
-        getAllData()
+        if(!isDataLoaded)
+            getAllData()
+        else
+            view?.showData()
     }
 
     override fun destroy() {

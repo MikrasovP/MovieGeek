@@ -21,6 +21,8 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
     @Inject
     lateinit var moviesRepo: BaseMoviesRepo
 
+    private var isDataLoaded = false
+
 
     override fun getAllData() {
         val topRatedMoviesObservable = moviesRepo.getTopRated()
@@ -51,6 +53,7 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
                 view?.setTrending(it.trendingMovies)
 
                 view?.showData()
+                isDataLoaded = true
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
@@ -65,7 +68,10 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
 
 
     override fun viewIsReady() {
-        getAllData()
+        if (!isDataLoaded)
+            getAllData()
+        else
+            view?.showData()
     }
 
     override fun destroy() {

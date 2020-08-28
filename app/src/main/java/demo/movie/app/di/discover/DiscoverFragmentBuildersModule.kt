@@ -2,11 +2,8 @@ package demo.movie.app.di.discover
 
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import demo.movie.app.di.ImageLoadModule
 import demo.movie.app.di.scopes.DiscoverScope
-import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.ui.discover.movie.MovieContract
 import demo.movie.app.ui.discover.movie.MovieFragment
 import demo.movie.app.ui.discover.movie.MoviePresenter
