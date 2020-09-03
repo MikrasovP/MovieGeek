@@ -1,4 +1,4 @@
-package demo.movie.app.di
+package demo.movie.app.di.discover.modules
 
 import dagger.Binds
 import dagger.Module

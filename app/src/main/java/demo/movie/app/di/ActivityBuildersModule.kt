@@ -2,7 +2,10 @@ package demo.movie.app.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import demo.movie.app.di.discover.DiscoverFragmentBuildersModule
+import demo.movie.app.di.discover.modules.DiscoverFragmentBuildersModule
+import demo.movie.app.di.discover.modules.PresentersModule
+import demo.movie.app.di.discover.modules.RepoModule
+import demo.movie.app.di.discover.modules.SchedulerProviderModule
 import demo.movie.app.di.scopes.DiscoverScope
 import demo.movie.app.ui.discover.DiscoverActivity
 
@@ -13,7 +16,9 @@ abstract class ActivityBuildersModule {
     @ContributesAndroidInjector(
         modules = [
             DiscoverFragmentBuildersModule::class,
-            RepoModule::class
+            PresentersModule::class,
+            RepoModule::class,
+            SchedulerProviderModule::class
         ]
     )
     abstract fun contributeDiscoverActivity(): DiscoverActivity

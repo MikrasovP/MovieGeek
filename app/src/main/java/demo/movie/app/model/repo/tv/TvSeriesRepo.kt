@@ -5,10 +5,9 @@ import demo.movie.app.model.services.BaseNetworkService
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-class TvSeriesRepo @Inject constructor(): BaseTvRepo {
-
-    @Inject
-    lateinit var networkService: BaseNetworkService
+class TvSeriesRepo @Inject constructor(
+    var networkService: BaseNetworkService
+) : BaseTvRepo {
 
     override fun getPopular(): Observable<TvResponseResult> =
         networkService.getPopularTv()

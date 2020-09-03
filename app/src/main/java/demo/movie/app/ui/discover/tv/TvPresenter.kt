@@ -5,23 +5,22 @@ import demo.movie.app.model.dto.tv.TvListsWrapper
 import demo.movie.app.model.dto.tv.TvResponseResult
 import demo.movie.app.model.repo.tv.BaseTvRepo
 import demo.movie.app.ui.mvp.PresenterBase
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import demo.movie.app.util.rx.BaseSchedulerProvider
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.functions.Function3
-import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvContract.TvPresenter {
+class TvPresenter @Inject constructor(
+    var tvRepo: BaseTvRepo,
+    var schedulerProvider: BaseSchedulerProvider
+) : PresenterBase<TvContract.TvView>(),
+    TvContract.TvPresenter {
 
     companion object {
         private const val TAG = "TvPresenter"
     }
 
-    @Inject
-    lateinit var tvRepo: BaseTvRepo
-
     private var isDataLoaded = false
-
 
     override fun getAllData() {
         val topRatedMoviesObservable = tvRepo.getTopRated()
@@ -33,26 +32,21 @@ class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvC
             popularMoviesObservable,
             trendingMoviesObservable,
             Function3 { topRated: TvResponseResult,
-                             popular: TvResponseResult,
-                             trending: TvResponseResult ->
+                        popular: TvResponseResult,
+                        trending: TvResponseResult ->
                 TvListsWrapper(
                     topRated = topRated.results,
                     popular = popular.results,
                     trending = trending.results
                 )
             })
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(schedulerProvider.io())
             .doOnSubscribe {
                 view?.showLoadingProgressBar()
             }
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(schedulerProvider.ui())
             .subscribe({
-                view?.setTopRated(it.topRated)
-                view?.setPopular(it.popular)
-                view?.setTrending(it.trending)
-
-                view?.showData()
-                isDataLoaded = true
+                onDataReceived(it)
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
@@ -61,13 +55,23 @@ class TvPresenter @Inject constructor(): PresenterBase<TvContract.TvView>(), TvC
 
     }
 
+    private fun onDataReceived(data: TvListsWrapper) {
+        view?.setTopRated(data.topRated)
+        view?.setPopular(data.popular)
+        view?.setTrending(data.trending)
+
+        view?.showData()
+        if (view != null)
+            isDataLoaded = true
+    }
+
     override fun refreshAllData() {
         TODO("Not yet implemented")
     }
 
 
     override fun viewIsReady() {
-        if(!isDataLoaded)
+        if (!isDataLoaded)
             getAllData()
         else
             view?.showData()
