@@ -68,7 +68,7 @@ class MovieAdapter(
             containerView.tv_movie_card_title.text = movie.title
             containerView.tv_movie_card_date.text = movie.release_date
             containerView.tv_movie_card_adult_label.visibility =
-                if (movie.adult) View.VISIBLE else View.GONE
+                if (movie.isAdult) View.VISIBLE else View.GONE
             containerView.tv_movie_card_rating_label.setRating(
                 RatingConverter.convertFromServerFormatToLocal(movie.voteAverage)
             )

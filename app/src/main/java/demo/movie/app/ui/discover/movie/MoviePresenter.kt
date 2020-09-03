@@ -5,21 +5,22 @@ import demo.movie.app.model.dto.movie.MoviesListsWrapper
 import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.repo.movies.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import demo.movie.app.util.rx.BaseSchedulerProvider
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.functions.Function3
-import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieView>(),
+class MoviePresenter @Inject constructor(
+    var moviesRepo: BaseMoviesRepo,
+    var schedulerProvider: BaseSchedulerProvider
+) :
+    PresenterBase<MovieContract.MovieView>(),
     MovieContract.MoviePresenter {
 
     companion object {
         private const val TAG = "MoviePresenter"
     }
 
-    @Inject
-    lateinit var moviesRepo: BaseMoviesRepo
 
     private var isDataLoaded = false
 
@@ -42,24 +43,29 @@ class MoviePresenter @Inject constructor() : PresenterBase<MovieContract.MovieVi
                     trendingMovies = trending.results
                 )
             })
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(schedulerProvider.io())
             .doOnSubscribe {
                 view?.showLoadingProgressBar()
             }
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(schedulerProvider.ui())
             .subscribe({
-                view?.setTopRated(it.topRatedMovies)
-                view?.setPopular(it.popularMovies)
-                view?.setTrending(it.trendingMovies)
-
-                view?.showData()
-                isDataLoaded = true
+                onDataReceived(it)
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
             })
 
 
+    }
+
+    private fun onDataReceived(data: MoviesListsWrapper) {
+        view?.setTopRated(data.topRatedMovies)
+        view?.setPopular(data.popularMovies)
+        view?.setTrending(data.trendingMovies)
+
+        view?.showData()
+        if (view != null)
+            isDataLoaded = true
     }
 
     override fun refreshAllData() {
