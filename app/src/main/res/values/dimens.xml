@@ -23,5 +23,8 @@
 
     <dimen name="adult_label_corner_radius">6dp</dimen>
     <dimen name="adult_label_alpha">0.5</dimen>
-    <dimen name="poster_height">210dp</dimen>
+    <dimen name="card_poster_height">210dp</dimen>
+
+    <dimen name="detail_poster_width">140dp</dimen>
+    <dimen name="detail_poster_height">210dp</dimen>
 </resources>

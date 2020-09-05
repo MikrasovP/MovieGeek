@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/iv_movie_card_poster"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/poster_height"
+            android:layout_height="@dimen/card_poster_height"
             android:scaleType="centerCrop"
             android:src="@color/colorAccent"
             android:transitionName="meme_pic"
