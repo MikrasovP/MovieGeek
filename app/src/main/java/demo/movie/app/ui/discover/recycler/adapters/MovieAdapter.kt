@@ -60,13 +60,13 @@ class MovieAdapter(
 
             imageLoader.loadImagePoster(
                 viewWith = containerView,
-                imageRawPath = movie.poster_path,
+                imageRawPath = movie.posterPath,
                 imageSize = ImageSize.ORIGINAL,
                 viewInto = containerView.iv_movie_card_poster
             )
 
             containerView.tv_movie_card_title.text = movie.title
-            containerView.tv_movie_card_date.text = movie.release_date
+            containerView.tv_movie_card_date.text = movie.releaseDate
             containerView.tv_movie_card_adult_label.visibility =
                 if (movie.isAdult) View.VISIBLE else View.GONE
             containerView.tv_movie_card_rating_label.setRating(

@@ -26,9 +26,9 @@ class NetworkServiceTest {
                         isAdult = false,
                         voteAverage = 1.1,
                         title = "TITLE",
-                        original_name = "TITLE_ORIGINAL",
-                        release_date = "11-11-2011",
-                        poster_path = "/asdfgf.jpg"
+                        originalName = "TITLE_ORIGINAL",
+                        releaseDate = "11-11-2011",
+                        posterPath = "/asdfgf.jpg"
                     )
                 )
             )

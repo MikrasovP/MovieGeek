@@ -12,9 +12,9 @@ data class MoviePreviewDto(
     @SerializedName("title")
     val title: String,
     @SerializedName("original_name")
-    val original_name: String,
+    val originalName: String,
     @SerializedName("release_date")
-    val release_date: String,
+    val releaseDate: String,
     @SerializedName("poster_path")
-    val poster_path: String
+    val posterPath: String
 )

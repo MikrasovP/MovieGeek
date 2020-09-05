@@ -23,9 +23,9 @@ class MoviesRepoTest {
                         isAdult = false,
                         voteAverage = 1.1,
                         title = "TITLE",
-                        original_name = "TITLE_POPULAR",
-                        release_date = "11-11-2011",
-                        poster_path = "/asdfgf.jpg"
+                        originalName = "TITLE_POPULAR",
+                        releaseDate = "11-11-2011",
+                        posterPath = "/asdfgf.jpg"
                     )
                 )
             )
