@@ -1,15 +1,16 @@
 package demo.movie.app.ui.detail
 
+import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.ui.mvp.MvpPresenter
 import demo.movie.app.ui.mvp.MvpView
 
 interface MovieDetailContract {
 
-    interface MovieDetailView : MvpView{
-        fun showData()
+    interface View : MvpView{
+        fun showData(movie: MovieDetailDto)
     }
 
-    interface MovieDetailPresenter : MvpPresenter<MovieDetailView> {
+    interface Presenter : MvpPresenter<View> {
         fun getMovieDetail(id: Int)
     }
 
