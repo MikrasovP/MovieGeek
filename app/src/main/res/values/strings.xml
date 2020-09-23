@@ -17,4 +17,8 @@
 
     <string name="discover_card_adult_label_text">18+</string>
     <string name="discover_load_error">An error occurred while loading data.\nPlease, check your internet connection.</string>
+
+    <string name="detail_heading_overview">Overview</string>
+    <string name="detail_heading_cast">Cast</string>
+    <string name="detail_heading_recommendations">You might also like</string>
 </resources>

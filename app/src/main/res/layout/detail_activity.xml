@@ -9,22 +9,22 @@
         android:id="@+id/detail_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/detail_scrollview"/>
+        app:layout_constraintBottom_toTopOf="@id/detail_scrollview"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/detail_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/detail_toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detail_toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/detail_poster"
+                android:id="@+id/detail_poster_iv"
                 android:layout_width="@dimen/detail_poster_width"
                 android:layout_height="@dimen/detail_poster_height"
                 android:layout_margin="@dimen/spacing_small_8"
@@ -33,16 +33,115 @@
                 tools:src="@drawable/ic_profile_18dp" />
 
             <TextView
-                android:id="@+id/detail_overview"
-                android:layout_width="match_parent"
+                android:id="@+id/detail_title_tv"
+                android:layout_width="@dimen/detail_title_width"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_large_24"
+                android:paddingHorizontal="@dimen/detail_title_padding_horizontal"
+                android:paddingVertical="@dimen/detail_title_padding_vertical"
+                android:layout_marginTop="@dimen/spacing_small_8"
+                app:layout_constraintBottom_toTopOf="@id/detail_year_tv"
+                app:layout_constraintStart_toEndOf="@id/detail_poster_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Movie / TV title and it's looooong"/>
+
+            <TextView
+                android:id="@+id/detail_year_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_small"
+                android:paddingHorizontal="@dimen/detail_title_padding_horizontal"
+                app:layout_constraintTop_toBottomOf="@id/detail_title_tv"
+                app:layout_constraintStart_toEndOf="@id/detail_poster_iv"
+                tools:text="2020"/>
+
+            <TextView
+                android:id="@+id/detail_genre_tv"
+                android:layout_width="@dimen/detail_title_width"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:textColor="@color/colorTextLighter"
-                android:layout_margin="@dimen/spacing_small_8"
-                android:paddingVertical="@dimen/spacing_small_8"
+                android:textSize="16sp"
+                android:maxLines="2"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_small"
+                android:paddingHorizontal="@dimen/detail_title_padding_horizontal"
+                app:layout_constraintStart_toEndOf="@id/detail_poster_iv"
+                app:layout_constraintTop_toBottomOf="@id/detail_year_tv"
+                tools:text="Action, thriller, fantasy"/>
+
+            <TextView
+                android:id="@+id/detail_runtime_tv"
+                android:layout_width="@dimen/detail_title_width"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_small"
+                android:paddingHorizontal="@dimen/detail_title_padding_horizontal"
+                app:layout_constraintStart_toEndOf="@id/detail_poster_iv"
+                app:layout_constraintTop_toBottomOf="@id/detail_genre_tv"
+                tools:text="121 minutes"/>
+
+            <TextView
+                android:id="@+id/detail_heading_overview_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/detail_heading_height"
+                android:textSize="@dimen/font_large_20"
+                android:text="@string/detail_heading_overview"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_large"
                 android:paddingHorizontal="@dimen/spacing_normal_16"
-                app:layout_constraintTop_toBottomOf="@id/detail_poster"
-                tools:text="I'll be back"/>
+                app:layout_constraintTop_toBottomOf="@id/detail_poster_iv"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/detail_overview_heading_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_normal_16"
+                android:paddingVertical="@dimen/spacing_small_8"
+                android:layout_marginTop="@dimen/detail_elements_spacing_small"
+                android:textColor="@color/colorTextLighter"
+                app:layout_constraintTop_toBottomOf="@id/detail_heading_overview_tv"
+                tools:text="I'll be back \nHehehe this is film overview \nWow" />
+
+            <TextView
+                android:id="@+id/detail_heading_cast_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/detail_heading_height"
+                android:textSize="@dimen/font_large_20"
+                android:text="@string/detail_heading_cast"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_large"
+                android:paddingHorizontal="@dimen/spacing_normal_16"
+                app:layout_constraintTop_toBottomOf="@id/detail_overview_heading_tv"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detail_cast_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipToPadding="false"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_small"
+                android:paddingHorizontal="@dimen/detail_cast_horizontal_padding"
+                app:layout_constraintTop_toBottomOf="@id/detail_heading_cast_tv"/>
+
+            <TextView
+                android:id="@+id/detail_heading_recommendations_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/detail_heading_height"
+                android:textSize="@dimen/font_large_20"
+                android:text="@string/detail_heading_recommendations"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_large"
+                android:paddingHorizontal="@dimen/spacing_normal_16"
+                app:layout_constraintTop_toBottomOf="@id/detail_cast_rv"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detail_recommendations_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipToPadding="false"
+                android:layout_marginVertical="@dimen/detail_elements_spacing_small"
+                android:paddingHorizontal="@dimen/detail_cast_horizontal_padding"
+                app:layout_constraintTop_toBottomOf="@id/detail_heading_recommendations_tv"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
