@@ -61,7 +61,7 @@ class MovieAdapter(
             imageLoader.loadImagePoster(
                 viewWith = containerView,
                 imageRawPath = movie.posterPath,
-                imageSize = ImageSize.ORIGINAL,
+                imageSize = ImageSize.W500,
                 viewInto = containerView.iv_movie_card_poster
             )
 

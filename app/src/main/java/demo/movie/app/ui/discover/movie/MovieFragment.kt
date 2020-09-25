@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
@@ -121,6 +122,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         Log.d(TAG, "showMovieDetail: $movie")
         val intent = Intent(requireContext(), MovieDetailActivity::class.java)
 
+        intent.putExtra(MovieDetailActivity.MOVIE_PREVIEW_EXTRA_NAME, movie)
         requireActivity().startActivity(intent)
     }
 

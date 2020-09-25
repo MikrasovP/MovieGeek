@@ -1,5 +1,6 @@
 package demo.movie.app.model.repo.movies
 
+import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.services.BaseNetworkService
 import io.reactivex.rxjava3.core.Observable
@@ -21,4 +22,6 @@ class MoviesRepo @Inject constructor(
     override fun getTopRated(): Observable<MoviesResponseResult> =
         networkService.getTopRatedMovies()
 
+    override fun getMovieDetails(id: Int): Observable<MovieDetailDto> =
+        networkService.getMovieDetails(id)
 }
