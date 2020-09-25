@@ -27,7 +27,9 @@ abstract class ActivityBuildersModule {
     @DiscoverScope
     @ContributesAndroidInjector(
         modules = [
-            PresentersModule::class
+            PresentersModule::class,
+            RepoModule::class,
+            SchedulerProviderModule::class,
         ]
     )
     abstract fun contributeMovieDetailActivity(): MovieDetailActivity
