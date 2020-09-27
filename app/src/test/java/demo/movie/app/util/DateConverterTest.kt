@@ -36,7 +36,7 @@ class DateConverterTest {
     }
 
     @Test
-    fun test_convertServerDateToCalendar() {
+    fun testConvertServerDateToCalendar() {
         var calendar = DateConverter.convertServerDateToCalendar(PROPER_SERVER_DATE_1)
 
         assert(calendar.get(Calendar.YEAR) == PROPER_YEAR_1)
@@ -57,12 +57,11 @@ class DateConverterTest {
     }
 
     @Test
-    fun test_convertCalendarToServerDate() {
+    fun testConvertCalendarToServerDate() {
         var serverDate = DateConverter.convertCalendarToServerStringFormat(PROPER_CALENDAR_DATE_1)
         assert(serverDate == PROPER_SERVER_DATE_1)
 
         serverDate = DateConverter.convertCalendarToServerStringFormat(PROPER_CALENDAR_DATE_2)
-        println(serverDate)
         assert(serverDate == PROPER_SERVER_DATE_2)
 
         serverDate = DateConverter.convertCalendarToServerStringFormat(PROPER_CALENDAR_DATE_3)

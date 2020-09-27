@@ -31,7 +31,8 @@ interface MoviesApi {
 
     @GET("movie/{movie_id}")
     fun getMovie(
-        @Path("movie_id") movieId: Int
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") api_key: String,
     ): Observable<MovieDetailDto>
 
 }

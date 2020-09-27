@@ -2,6 +2,8 @@ package demo.movie.app
 
 import demo.movie.app.model.api.MoviesApi
 import demo.movie.app.model.api.TvSeriesApi
+import demo.movie.app.model.dto.*
+import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.dto.tv.TvPreviewDto
@@ -18,7 +20,7 @@ import org.mockito.MockitoAnnotations
 class NetworkServiceTest {
 
     private companion object {
-        val PROPER_RESPONSE_MOVIE =
+        val PROPER_MOVIE_PREVIEW_RESPONSE =
             MoviesResponseResult(
                 immutableListOf(
                     MoviePreviewDto(
@@ -46,6 +48,55 @@ class NetworkServiceTest {
                     )
                 )
             )
+
+        const val PROPER_MOVIE_DETAILS_ID = 1
+        val PROPER_MOVIE_DETAILS_RESPONSE =
+            MovieDetailDto(
+                id = 1,
+                isAdult = false,
+                budget = 1000,
+                credits = Credits(
+                    id = 1,
+                    cast = immutableListOf(
+                        CastMember(
+                            id = 10000,
+                            character = "Batman",
+                            profile_path = "path",
+                            name = "Donald Duck",
+                            order = 1,
+                        ),
+                        CastMember(
+                            id = 12000,
+                            character = "Joker",
+                            profile_path = "path",
+                            name = "Mickey Mouse",
+                            order = 1,
+                        )
+                    ),
+                    crew = immutableListOf(
+                        CrewMember(
+                            id = 2341,
+                            job = "director",
+                            name = "Christopher Nolan",
+                            profilePath = "/hguavhbnasdv",
+                        )
+                    )
+                ),
+                genres = immutableListOf(
+                    Genre(1, "thriller"),
+                    Genre(2, "action")
+                ),
+                originalLanguage = "en",
+                overview = "hehehe, description",
+                posterPath = "/1idsuv,md",
+                recommendations = PROPER_MOVIE_PREVIEW_RESPONSE,
+                revenue = 32231123,
+                runtime = 122,
+                status = MovieStatus.RELEASED,
+                tagline = "slogan",
+                title = "Tenet plus batman",
+                voteAverage = 2.1,
+            )
     }
 
     private lateinit var networkService: NetworkService
@@ -67,44 +118,61 @@ class NetworkServiceTest {
     fun testGetPopularMovies() {
         Mockito.`when`(moviesApi.getPopular(Mockito.anyString())).thenReturn(
             Observable.just(
-                PROPER_RESPONSE_MOVIE
+                PROPER_MOVIE_PREVIEW_RESPONSE
             )
         )
 
-        networkService.getPopularMovies().contains(PROPER_RESPONSE_MOVIE)
+        networkService.getPopularMovies().contains(PROPER_MOVIE_PREVIEW_RESPONSE)
     }
 
     @Test
     fun testGetTopRatedMovies() {
         Mockito.`when`(moviesApi.getTopRated(Mockito.anyString())).thenReturn(
             Observable.just(
-                PROPER_RESPONSE_MOVIE
+                PROPER_MOVIE_PREVIEW_RESPONSE
             )
         )
 
-        networkService.getTopRatedMovies().contains(PROPER_RESPONSE_MOVIE)
+        networkService.getTopRatedMovies().contains(PROPER_MOVIE_PREVIEW_RESPONSE)
     }
 
     @Test
     fun testGetTrendingPerDayMovies() {
         Mockito.`when`(moviesApi.getTrendingPerDay(Mockito.anyString())).thenReturn(
             Observable.just(
-                PROPER_RESPONSE_MOVIE
+                PROPER_MOVIE_PREVIEW_RESPONSE
             )
         )
 
-        networkService.getTrendingPerDayMovies().contains(PROPER_RESPONSE_MOVIE)
+        networkService.getTrendingPerDayMovies().contains(PROPER_MOVIE_PREVIEW_RESPONSE)
     }
 
     @Test
     fun testGetTrendingPerWeekMovies() {
         Mockito.`when`(moviesApi.getTrendingPerWeek(Mockito.anyString())).thenReturn(
             Observable.just(
-                PROPER_RESPONSE_MOVIE
+                PROPER_MOVIE_PREVIEW_RESPONSE
             )
         )
 
-        networkService.getTrendingPerWeekMovies().contains(PROPER_RESPONSE_MOVIE)
+        networkService.getTrendingPerWeekMovies().contains(PROPER_MOVIE_PREVIEW_RESPONSE)
+    }
+
+    @Test
+    fun testGetMovieDetails() {
+        Mockito.`when`(
+            moviesApi.getMovie(
+                Mockito.eq(PROPER_MOVIE_DETAILS_ID),
+                Mockito.anyString()
+            )
+        ).thenReturn(
+            Observable.just(
+                PROPER_MOVIE_DETAILS_RESPONSE
+            )
+        )
+
+        networkService.getMovieDetails(PROPER_MOVIE_DETAILS_ID)
+            .contains(PROPER_MOVIE_DETAILS_RESPONSE)
     }
 
     @Test

@@ -27,7 +27,7 @@ class NetworkService @Inject constructor(
         moviesApi.getTopRated(API_KEY)
 
     override fun getMovieDetails(id: Int): Observable<MovieDetailDto> =
-        moviesApi.getMovie(id)
+        moviesApi.getMovie(id, API_KEY)
 
     override fun getPopularTv(): Observable<TvResponseResult> =
         tvSeriesApi.getPopular(API_KEY)
