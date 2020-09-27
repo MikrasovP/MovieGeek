@@ -90,6 +90,7 @@ class NetworkServiceTest {
                 overview = "hehehe, description",
                 posterPath = "/1idsuv,md",
                 recommendations = PROPER_MOVIE_PREVIEW_RESPONSE,
+                releaseDate = "2019-09-12",
                 revenue = 32231123,
                 runtime = 122,
                 status = MovieStatus.RELEASED,

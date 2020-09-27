@@ -15,6 +15,8 @@ abstract class BaseAdapterProvider {
 
     abstract fun getTopRatedMoviesAdapter(): MovieAdapter
 
+    abstract fun getRecommendedMoviesAdapter(): MovieAdapter
+
     abstract fun getPopularTvSeriesAdapter(): TvSeriesAdapter
 
     abstract fun getTrendingTvSeriesAdapter(): TvSeriesAdapter
