@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.model.dto.tv.TvPreviewDto

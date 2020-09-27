@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,44 +8,44 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import demo.movie.app.R
 import demo.movie.app.di.DaggerAppComponent
-import demo.movie.app.model.dto.tv.TvPreviewDto
-import demo.movie.app.ui.discover.recycler.callbacks.TvDiffUtilCallback
+import demo.movie.app.model.dto.movie.MoviePreviewDto
+import demo.movie.app.ui.recycler.callbacks.MovieDiffUtilCallback
 import demo.movie.app.util.RatingConverter
 import demo.movie.app.util.image.BaseImageLoader
 import demo.movie.app.util.image.ImageSize
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.movie_card.view.*
 
-class TvSeriesAdapter(
-    private val onItemClickListener: (TvPreviewDto) -> Unit,
+class MovieAdapter(
+    private val onItemClickListener: (MoviePreviewDto) -> Unit,
     private val imageLoader: BaseImageLoader
-) : RecyclerView.Adapter<TvSeriesAdapter.TvSeriesViewHolder>() {
+) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>() {
 
-    private var items: List<TvPreviewDto> = listOf()
+    private var items: List<MoviePreviewDto> = listOf()
 
-    fun updateData(data: List<TvPreviewDto>) {
-        val diffCallback = TvDiffUtilCallback(oldList = items, newList = data)
+    fun updateData(data: List<MoviePreviewDto>) {
+        val diffCallback = MovieDiffUtilCallback(oldList = items, newList = data)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         items = data
         diffResult.dispatchUpdatesTo(this)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvSeriesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val movieCard = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.movie_card, parent, false) as CardView
-        return TvSeriesViewHolder(movieCard, onItemClickListener)
+        return MoviesViewHolder(movieCard, onItemClickListener)
     }
 
-    override fun onBindViewHolder(holder: TvSeriesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
     override fun getItemCount(): Int = items.size
 
-    inner class TvSeriesViewHolder(
+    inner class MoviesViewHolder(
         override val containerView: View,
-        onItemClickListener: (TvPreviewDto) -> Unit
+        onItemClickListener: (MoviePreviewDto) -> Unit
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         init {
@@ -56,19 +56,21 @@ class TvSeriesAdapter(
             }
         }
 
-        fun bind(tv: TvPreviewDto) {
+        fun bind(movie: MoviePreviewDto) {
 
             imageLoader.loadImagePoster(
                 viewWith = containerView,
-                imageRawPath = tv.poster_path,
-                imageSize = ImageSize.ORIGINAL,
+                imageRawPath = movie.posterPath,
+                imageSize = ImageSize.W500,
                 viewInto = containerView.iv_movie_card_poster
             )
 
-            containerView.tv_movie_card_title.text = tv.title
-            containerView.tv_movie_card_date.text = tv.release_date
+            containerView.tv_movie_card_title.text = movie.title
+            containerView.tv_movie_card_date.text = movie.releaseDate
+            containerView.tv_movie_card_adult_label.visibility =
+                if (movie.isAdult) View.VISIBLE else View.GONE
             containerView.tv_movie_card_rating_label.setRating(
-                RatingConverter.convertFromServerFormatToLocal(tv.voteAverage)
+                RatingConverter.convertFromServerFormatToLocal(movie.voteAverage)
             )
         }
     }

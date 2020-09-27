@@ -1,51 +1,45 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import demo.movie.app.R
 import demo.movie.app.di.DaggerAppComponent
+import demo.movie.app.model.dto.CastMemberDto
+import demo.movie.app.model.dto.CrewMemberDto
 import demo.movie.app.model.dto.movie.MoviePreviewDto
-import demo.movie.app.ui.discover.recycler.callbacks.MovieDiffUtilCallback
 import demo.movie.app.util.RatingConverter
 import demo.movie.app.util.image.BaseImageLoader
 import demo.movie.app.util.image.ImageSize
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.movie_card.view.*
 
-class MovieAdapter(
-    private val onItemClickListener: (MoviePreviewDto) -> Unit,
+class CastAdapter(
+    private val onItemClickListener: (CastMemberDto) -> Unit,
     private val imageLoader: BaseImageLoader
-) : RecyclerView.Adapter<MovieAdapter.MoviesViewHolder>() {
+) : RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
 
-    private var items: List<MoviePreviewDto> = listOf()
+    private var items: List<CastMemberDto> = listOf()
 
-    fun updateData(data: List<MoviePreviewDto>) {
-        val diffCallback = MovieDiffUtilCallback(oldList = items, newList = data)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        items = data
-        diffResult.dispatchUpdatesTo(this)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
-        val movieCard = LayoutInflater
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
+        val castMemberCard = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.movie_card, parent, false) as CardView
-        return MoviesViewHolder(movieCard, onItemClickListener)
+            .inflate(R.layout.cast_member_card, parent, false) as CardView
+        return CastViewHolder(castMemberCard, onItemClickListener)
     }
 
-    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        holder.bind(items[position])
+    override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
+        TODO("Not yet implemented")
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int =
+        items.size
 
-    inner class MoviesViewHolder(
+    inner class CastViewHolder(
         override val containerView: View,
-        onItemClickListener: (MoviePreviewDto) -> Unit
+        onItemClickListener: (CastMemberDto) -> Unit
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         init {
@@ -56,7 +50,7 @@ class MovieAdapter(
             }
         }
 
-        fun bind(movie: MoviePreviewDto) {
+        fun bind(castMember: CastMemberDto) {
 
             imageLoader.loadImagePoster(
                 viewWith = containerView,
@@ -74,5 +68,4 @@ class MovieAdapter(
             )
         }
     }
-
 }

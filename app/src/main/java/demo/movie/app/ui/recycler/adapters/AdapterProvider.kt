@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import demo.movie.app.util.image.BaseImageLoader
 import javax.inject.Inject

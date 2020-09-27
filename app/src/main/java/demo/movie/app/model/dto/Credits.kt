@@ -6,7 +6,7 @@ data class Credits (
     @SerializedName("id")
     val id: Int,
     @SerializedName("cast")
-    val cast: List<CastMember>,
+    val cast: List<CastMemberDto>,
     @SerializedName("crew")
-    val crew: List<CrewMember>
+    val crew: List<CrewMemberDto>
 )

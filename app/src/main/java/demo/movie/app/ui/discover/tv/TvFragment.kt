@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.tv.TvPreviewDto
-import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.recycler.adapters.BaseAdapterProvider
 import kotlinx.android.synthetic.main.discover_tv_fragment.*
 import javax.inject.Inject
 

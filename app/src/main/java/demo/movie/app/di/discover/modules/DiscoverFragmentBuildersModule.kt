@@ -6,8 +6,8 @@ import dagger.android.ContributesAndroidInjector
 import demo.movie.app.di.scopes.DiscoverScope
 import demo.movie.app.ui.discover.movie.MovieFragment
 import demo.movie.app.ui.discover.profile.ProfileFragment
-import demo.movie.app.ui.discover.recycler.adapters.AdapterProvider
-import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.recycler.adapters.AdapterProvider
+import demo.movie.app.ui.recycler.adapters.BaseAdapterProvider
 import demo.movie.app.ui.discover.tv.TvFragment
 
 @Module

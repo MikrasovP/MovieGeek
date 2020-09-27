@@ -7,12 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.ui.detail.MovieDetailActivity
-import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.recycler.adapters.BaseAdapterProvider
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
 import javax.inject.Inject
 

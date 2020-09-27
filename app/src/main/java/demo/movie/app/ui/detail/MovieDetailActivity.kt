@@ -2,12 +2,11 @@ package demo.movie.app.ui.detail
 
 import android.os.Bundle
 import android.os.ParcelFormatException
-import android.view.View
 import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviePreviewDto
-import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.recycler.adapters.BaseAdapterProvider
 import demo.movie.app.util.DateConverter
 import demo.movie.app.util.image.BaseImageLoader
 import demo.movie.app.util.image.ImageSize

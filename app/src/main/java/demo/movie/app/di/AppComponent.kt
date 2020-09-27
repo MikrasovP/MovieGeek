@@ -6,7 +6,6 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import demo.movie.app.ui.BaseApp
-import demo.movie.app.ui.discover.recycler.adapters.MovieAdapter
 import javax.inject.Singleton
 
 @Singleton

@@ -13,6 +13,9 @@
     <dimen name="spacing_small_8">8dp</dimen>
     <dimen name="spacing_tiny_4">4dp</dimen>
 
+    <dimen name="card_layout_margin">8dp</dimen>
+    <dimen name="card_text_padding">8dp</dimen>
+
     <dimen name="discover_subtitle_side_padding_10">10dp</dimen>
     <dimen name="discover_subtitle_height">48dp</dimen>
     <dimen name="discover_list_height">286dp</dimen>
@@ -34,4 +37,8 @@
     <dimen name="detail_heading_height">28dp</dimen>
     <dimen name="detail_elements_spacing_large">16dp</dimen>
     <dimen name="detail_elements_spacing_small">8dp</dimen>
+    <dimen name="detail_cast_card_width">120dp</dimen>
+    <dimen name="detail_cast_card_height">235dp</dimen>
+    <dimen name="detail_cast_card_poster_corner_radius">8dp</dimen>
+    <dimen name="detail_cast_card_poster_height">170dp</dimen>
 </resources>

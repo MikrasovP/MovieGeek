@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="@dimen/detail_cast_card_height"
+    android:layout_width="@dimen/discover_card_width"
+    app:cardBackgroundColor="@color/colorBackground"
+    android:layout_margin="@dimen/card_layout_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cast_member_photo_container_cv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/detail_cast_card_poster_height"
+            app:cardCornerRadius="@dimen/detail_cast_card_poster_corner_radius"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/cast_member_photo_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src="@drawable/ic_profile_18dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/cast_member_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/card_text_padding"
+            android:maxLines="2"
+            app:layout_constraintTop_toBottomOf="@id/cast_member_photo_container_cv"
+            tools:text="Johnny Dep"/>
+
+        <TextView
+            android:id="@+id/cast_member_role_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextDarker"
+            app:layout_constraintTop_toBottomOf="@id/cast_member_name_tv"
+            tools:text="Captain Jack"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

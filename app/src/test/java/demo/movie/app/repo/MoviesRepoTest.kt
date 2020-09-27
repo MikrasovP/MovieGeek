@@ -41,14 +41,14 @@ class MoviesRepoTest {
                 credits = Credits(
                     id = 1,
                     cast = immutableListOf(
-                        CastMember(
+                        CastMemberDto(
                             id = 10000,
                             character = "Batman",
                             profile_path = "path",
                             name = "Donald Duck",
                             order = 1,
                         ),
-                        CastMember(
+                        CastMemberDto(
                             id = 12000,
                             character = "Joker",
                             profile_path = "path",
@@ -57,7 +57,7 @@ class MoviesRepoTest {
                         )
                     ),
                     crew = immutableListOf(
-                        CrewMember(
+                        CrewMemberDto(
                             id = 2341,
                             job = "director",
                             name = "Christopher Nolan",
