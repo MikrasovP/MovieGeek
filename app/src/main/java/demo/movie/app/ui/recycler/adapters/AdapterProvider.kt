@@ -6,18 +6,15 @@ import javax.inject.Inject
 class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
 
     private var adapterPopularMovies: MovieAdapter? = null
-
     private var adapterTrendingMovies: MovieAdapter? = null
-
     private var adapterTopRatedMovies: MovieAdapter? = null
-
     private var adapterRecommendedMovies: MovieAdapter? = null
 
     private var adapterPopularTvSeries: TvSeriesAdapter? = null
-
     private var adapterTrendingTvSeries: TvSeriesAdapter? = null
-
     private var adapterTopRatedTvSeries: TvSeriesAdapter? = null
+
+    private var castAdapter: CastAdapter? = null
 
     @Inject
     lateinit var imageLoader: BaseImageLoader
@@ -85,4 +82,14 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
         } else {
             adapterTopRatedTvSeries as TvSeriesAdapter
         }
+
+    override fun getCastAdapter(): CastAdapter =
+        if (castAdapter == null) {
+            val adapter = CastAdapter(onCastMemberClick, imageLoader)
+            castAdapter = adapter
+            adapter
+        } else {
+            castAdapter as CastAdapter
+        }
+
 }

@@ -33,6 +33,7 @@ interface MoviesApi {
     fun getMovie(
         @Path("movie_id") movieId: Int,
         @Query("api_key") api_key: String,
+        @Query("append_to_response") append_to_response: String,
     ): Observable<MovieDetailDto>
 
 }

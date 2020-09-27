@@ -19,7 +19,8 @@ abstract class ActivityBuildersModule {
             DiscoverFragmentBuildersModule::class,
             PresentersModule::class,
             RepoModule::class,
-            SchedulerProviderModule::class
+            SchedulerProviderModule::class,
+            AdapterProviderModule::class,
         ]
     )
     abstract fun contributeDiscoverActivity(): DiscoverActivity
@@ -30,6 +31,7 @@ abstract class ActivityBuildersModule {
             PresentersModule::class,
             RepoModule::class,
             SchedulerProviderModule::class,
+            AdapterProviderModule::class,
         ]
     )
     abstract fun contributeMovieDetailActivity(): MovieDetailActivity

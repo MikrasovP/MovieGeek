@@ -1,5 +1,6 @@
 package demo.movie.app.ui.detail
 
+import android.util.Log
 import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.model.repo.movies.BaseMoviesRepo
@@ -14,18 +15,19 @@ class MovieDetailPresenter @Inject constructor(
     MovieDetailContract.Presenter,
     PresenterBase<MovieDetailContract.View>() {
 
-    private lateinit var movieDetail: MovieDetailDto
+    companion object {
+        private const val TAG = "MovieDetailPresenter"
+    }
 
     override fun setMoviePreviewAndUpdateDetails(moviePreview: MoviePreviewDto) {
-        if (moviePreview.id != movieDetail.id) {
-            moviesRepo.getMovieDetails(moviePreview.id)
-                .subscribeOn(schedulerProvider.ui())
-                .observeOn(schedulerProvider.io())
-                .subscribe {
-                    movieDetail = it
-                    view?.showFullData(movieDetail)
-                }
-        }
+        moviesRepo.getMovieDetails(moviePreview.id)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
+            .subscribe({
+                view?.showFullData(it)
+            }, {
+                Log.e(TAG, "setMoviePreviewAndUpdateDetails: ${it.message}", it)
+            })
     }
 
 

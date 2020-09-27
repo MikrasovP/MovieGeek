@@ -2,6 +2,7 @@ package demo.movie.app.ui.detail
 
 import android.os.Bundle
 import android.os.ParcelFormatException
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MovieDetailDto
@@ -57,10 +58,9 @@ class MovieDetailActivity : DaggerAppCompatActivity(), MovieDetailContract.View 
             ImageSize.W500
         )
 
-        val year =
-            DateConverter
-                .convertServerDateToCalendar(moviePreview.releaseDate)
-                .get(Calendar.YEAR)
+        val year = DateConverter
+            .convertServerDateToCalendar(moviePreview.releaseDate)
+            .get(Calendar.YEAR)
 
         detail_year_tv.text = year.toString()
     }
@@ -74,25 +74,48 @@ class MovieDetailActivity : DaggerAppCompatActivity(), MovieDetailContract.View 
             ImageSize.W500
         )
 
-        val year =
-            DateConverter
-                .convertServerDateToCalendar(movieDetail.releaseDate)
-                .get(Calendar.YEAR)
+        val year = DateConverter
+            .convertServerDateToCalendar(movieDetail.releaseDate)
+            .get(Calendar.YEAR)
 
         detail_year_tv.text = year.toString()
 
         detail_genre_tv.text = movieDetail.genres
             .joinToString(separator = ", ") { it.name }
 
-        detail_runtime_tv.text = resources.getText(R.string.detail_runtime_pattern)
+        detail_runtime_tv.text = getString(R.string.detail_runtime_pattern, movieDetail.runtime)
 
         detail_overview_tv.text = movieDetail.overview
 
+        adapterProvider.getCastAdapter()
+            .updateItems(movieDetail.credits.cast)
+
+        adapterProvider.getRecommendedMoviesAdapter()
+            .updateData(movieDetail.recommendations.results)
 
     }
 
     private fun initRecyclers() {
-        detail_recommendations_rv.adapter = adapterProvider.getRecommendedMoviesAdapter()
+        adapterProvider.onCastMemberClick = {}
+
+        detail_recommendations_rv.apply {
+            adapter = adapterProvider.getRecommendedMoviesAdapter()
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        }
+
+        detail_cast_rv.apply {
+            adapter = adapterProvider.getCastAdapter()
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.HORIZONTAL,
+                false
+            )
+        }
+
     }
 
 }

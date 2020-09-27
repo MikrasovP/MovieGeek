@@ -1,6 +1,5 @@
 package demo.movie.app.util
 
-import java.lang.IllegalArgumentException
 import java.text.SimpleDateFormat
 import java.util.*
 

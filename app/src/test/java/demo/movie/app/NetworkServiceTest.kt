@@ -164,6 +164,7 @@ class NetworkServiceTest {
         Mockito.`when`(
             moviesApi.getMovie(
                 Mockito.eq(PROPER_MOVIE_DETAILS_ID),
+                Mockito.anyString(),
                 Mockito.anyString()
             )
         ).thenReturn(

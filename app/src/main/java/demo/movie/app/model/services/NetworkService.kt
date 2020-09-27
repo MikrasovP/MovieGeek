@@ -14,6 +14,10 @@ class NetworkService @Inject constructor(
     var tvSeriesApi: TvSeriesApi
 ) : BaseNetworkService {
 
+    private companion object {
+        const val APPEND_TO_RESPONSE_PARAMS= "credits,recommendations"
+    }
+
     override fun getPopularMovies(): Observable<MoviesResponseResult> =
         moviesApi.getPopular(API_KEY)
 
@@ -27,7 +31,7 @@ class NetworkService @Inject constructor(
         moviesApi.getTopRated(API_KEY)
 
     override fun getMovieDetails(id: Int): Observable<MovieDetailDto> =
-        moviesApi.getMovie(id, API_KEY)
+        moviesApi.getMovie(id, API_KEY, APPEND_TO_RESPONSE_PARAMS)
 
     override fun getPopularTv(): Observable<TvResponseResult> =
         tvSeriesApi.getPopular(API_KEY)
