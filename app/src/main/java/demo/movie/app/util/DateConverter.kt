@@ -24,9 +24,10 @@ class DateConverter {
 
 
         fun convertCalendarToServerStringFormat(calendar: Calendar): String {
-            return "${calendar.get(Calendar.YEAR)}-" +
-                    "${calendar.get(Calendar.MONTH) + 1}-" +// month in range 0-11, but we need 1-12
-                    "${calendar.get(Calendar.DAY_OF_MONTH)}"
+            val dateFormat = SimpleDateFormat(PATTERN, Locale.US)
+            val date = calendar.time
+
+            return dateFormat.format(date)
         }
     }
 
