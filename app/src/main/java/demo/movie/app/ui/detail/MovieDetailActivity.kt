@@ -1,9 +1,9 @@
 package demo.movie.app.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.ParcelFormatException
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MovieDetailDto
@@ -101,7 +101,8 @@ class MovieDetailActivity : DaggerAppCompatActivity(), MovieDetailContract.View 
     }
 
     private fun initRecyclers() {
-        adapterProvider.onCastMemberClick = {}
+
+        adapterProvider.onMovieClick = { showMovieDetails(it) }
 
         detail_recommendations_rv.apply {
             adapter = adapterProvider.getRecommendedMoviesAdapter()
@@ -120,7 +121,13 @@ class MovieDetailActivity : DaggerAppCompatActivity(), MovieDetailContract.View 
                 false
             )
         }
+    }
 
+    private fun showMovieDetails(moviePreview: MoviePreviewDto) {
+        val intent = Intent(applicationContext, MovieDetailActivity::class.java)
+
+        intent.putExtra(MOVIE_PREVIEW_EXTRA_NAME, moviePreview)
+        startActivity(intent)
     }
 
 }

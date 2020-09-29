@@ -10,7 +10,6 @@ import demo.movie.app.R
 import demo.movie.app.di.DaggerAppComponent
 import demo.movie.app.model.dto.CastMemberDto
 import demo.movie.app.ui.recycler.callbacks.CastDiffUtilCallback
-import demo.movie.app.ui.recycler.callbacks.MovieDiffUtilCallback
 import demo.movie.app.util.image.BaseImageLoader
 import demo.movie.app.util.image.ImageSize
 import kotlinx.android.extensions.LayoutContainer

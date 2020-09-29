@@ -7,7 +7,6 @@ import demo.movie.app.model.repo.movies.BaseMoviesRepo
 import demo.movie.app.ui.mvp.PresenterBase
 import demo.movie.app.util.rx.BaseSchedulerProvider
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.functions.Function3
 import javax.inject.Inject
 
 class MoviePresenter @Inject constructor(
