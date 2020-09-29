@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import demo.movie.app.util.image.BaseImageLoader
 import javax.inject.Inject
@@ -6,16 +6,15 @@ import javax.inject.Inject
 class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
 
     private var adapterPopularMovies: MovieAdapter? = null
-
     private var adapterTrendingMovies: MovieAdapter? = null
-
     private var adapterTopRatedMovies: MovieAdapter? = null
+    private var adapterRecommendedMovies: MovieAdapter? = null
 
     private var adapterPopularTvSeries: TvSeriesAdapter? = null
-
     private var adapterTrendingTvSeries: TvSeriesAdapter? = null
-
     private var adapterTopRatedTvSeries: TvSeriesAdapter? = null
+
+    private var castAdapter: CastAdapter? = null
 
     @Inject
     lateinit var imageLoader: BaseImageLoader
@@ -47,8 +46,18 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
             adapterTopRatedMovies as MovieAdapter
         }
 
+    override fun getRecommendedMoviesAdapter(): MovieAdapter =
+        if (adapterRecommendedMovies == null) {
+            val adapter = MovieAdapter(onMovieClick, imageLoader)
+            adapterRecommendedMovies = adapter
+            adapter
+        } else {
+            adapterRecommendedMovies as MovieAdapter
+        }
+
+
     override fun getPopularTvSeriesAdapter(): TvSeriesAdapter =
-        if(adapterPopularTvSeries== null) {
+        if (adapterPopularTvSeries == null) {
             val adapter = TvSeriesAdapter(onTvSeriesClick, imageLoader)
             adapterPopularTvSeries = adapter
             adapter
@@ -57,7 +66,7 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
         }
 
     override fun getTrendingTvSeriesAdapter(): TvSeriesAdapter =
-        if(adapterTrendingTvSeries== null) {
+        if (adapterTrendingTvSeries == null) {
             val adapter = TvSeriesAdapter(onTvSeriesClick, imageLoader)
             adapterTrendingTvSeries = adapter
             adapter
@@ -66,11 +75,21 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
         }
 
     override fun getTopRatedTvSeriesAdapter(): TvSeriesAdapter =
-        if(adapterTopRatedTvSeries== null) {
+        if (adapterTopRatedTvSeries == null) {
             val adapter = TvSeriesAdapter(onTvSeriesClick, imageLoader)
             adapterTopRatedTvSeries = adapter
             adapter
         } else {
             adapterTopRatedTvSeries as TvSeriesAdapter
         }
+
+    override fun getCastAdapter(): CastAdapter =
+        if (castAdapter == null) {
+            val adapter = CastAdapter(onCastMemberClick, imageLoader)
+            castAdapter = adapter
+            adapter
+        } else {
+            castAdapter as CastAdapter
+        }
+
 }

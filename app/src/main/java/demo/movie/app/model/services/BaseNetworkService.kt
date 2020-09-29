@@ -1,5 +1,6 @@
 package demo.movie.app.model.services
 
+import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.dto.tv.TvResponseResult
 import io.reactivex.rxjava3.core.Observable
@@ -13,6 +14,8 @@ interface BaseNetworkService {
     fun getTrendingPerDayMovies(): Observable<MoviesResponseResult>
 
     fun getTopRatedMovies(): Observable<MoviesResponseResult>
+
+    fun getMovieDetails(id: Int): Observable<MovieDetailDto>
 
     fun getPopularTv() : Observable<TvResponseResult>
 

@@ -11,8 +11,8 @@ import io.reactivex.rxjava3.functions.Function3
 import javax.inject.Inject
 
 class MoviePresenter @Inject constructor(
-    var moviesRepo: BaseMoviesRepo,
-    var schedulerProvider: BaseSchedulerProvider
+    private var moviesRepo: BaseMoviesRepo,
+    private var schedulerProvider: BaseSchedulerProvider
 ) :
     PresenterBase<MovieContract.MovieView>(),
     MovieContract.MoviePresenter {
@@ -34,7 +34,7 @@ class MoviePresenter @Inject constructor(
             topRatedMoviesObservable,
             popularMoviesObservable,
             trendingMoviesObservable,
-            Function3 { topRated: MoviesResponseResult,
+            { topRated: MoviesResponseResult,
                         popular: MoviesResponseResult,
                         trending: MoviesResponseResult ->
                 MoviesListsWrapper(

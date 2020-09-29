@@ -2,6 +2,7 @@ package demo.movie.app.model.services
 
 import demo.movie.app.model.api.MoviesApi
 import demo.movie.app.model.api.TvSeriesApi
+import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviesResponseResult
 import demo.movie.app.model.dto.tv.TvResponseResult
 import demo.movie.app.util.Constants.API_KEY
@@ -12,6 +13,10 @@ class NetworkService @Inject constructor(
     var moviesApi: MoviesApi,
     var tvSeriesApi: TvSeriesApi
 ) : BaseNetworkService {
+
+    private companion object {
+        const val APPEND_TO_RESPONSE_PARAMS= "credits,recommendations"
+    }
 
     override fun getPopularMovies(): Observable<MoviesResponseResult> =
         moviesApi.getPopular(API_KEY)
@@ -24,6 +29,9 @@ class NetworkService @Inject constructor(
 
     override fun getTopRatedMovies(): Observable<MoviesResponseResult> =
         moviesApi.getTopRated(API_KEY)
+
+    override fun getMovieDetails(id: Int): Observable<MovieDetailDto> =
+        moviesApi.getMovie(id, API_KEY, APPEND_TO_RESPONSE_PARAMS)
 
     override fun getPopularTv(): Observable<TvResponseResult> =
         tvSeriesApi.getPopular(API_KEY)

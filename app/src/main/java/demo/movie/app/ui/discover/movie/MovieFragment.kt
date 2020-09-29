@@ -1,5 +1,6 @@
 package demo.movie.app.ui.discover.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
-import demo.movie.app.ui.discover.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.detail.MovieDetailActivity
+import demo.movie.app.ui.recycler.adapters.BaseAdapterProvider
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
 import javax.inject.Inject
 
@@ -30,6 +32,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
 
         presenter.attachView(this)
 
@@ -116,6 +119,10 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     override fun showMovieDetail(movie: MoviePreviewDto) {
         Log.d(TAG, "showMovieDetail: $movie")
+        val intent = Intent(requireContext(), MovieDetailActivity::class.java)
+
+        intent.putExtra(MovieDetailActivity.MOVIE_PREVIEW_EXTRA_NAME, movie)
+        requireActivity().startActivity(intent)
     }
 
 }

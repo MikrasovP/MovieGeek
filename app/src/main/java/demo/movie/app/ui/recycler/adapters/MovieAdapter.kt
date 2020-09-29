@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import demo.movie.app.R
 import demo.movie.app.di.DaggerAppComponent
 import demo.movie.app.model.dto.movie.MoviePreviewDto
-import demo.movie.app.ui.discover.recycler.callbacks.MovieDiffUtilCallback
+import demo.movie.app.ui.recycler.callbacks.MovieDiffUtilCallback
+import demo.movie.app.util.DateConverter
 import demo.movie.app.util.RatingConverter
 import demo.movie.app.util.image.BaseImageLoader
 import demo.movie.app.util.image.ImageSize
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.movie_card.view.*
+import java.util.*
 
 class MovieAdapter(
     private val onItemClickListener: (MoviePreviewDto) -> Unit,
@@ -58,15 +60,20 @@ class MovieAdapter(
 
         fun bind(movie: MoviePreviewDto) {
 
-            imageLoader.loadImagePoster(
-                viewWith = containerView,
-                imageRawPath = movie.posterPath,
-                imageSize = ImageSize.ORIGINAL,
-                viewInto = containerView.iv_movie_card_poster
-            )
+            if (movie.posterPath != null) {
+                imageLoader.loadImagePoster(
+                    viewWith = containerView,
+                    imageRawPath = movie.posterPath,
+                    imageSize = ImageSize.W500,
+                    viewInto = containerView.iv_movie_card_poster
+                )
+            }
 
-            containerView.tv_movie_card_title.text = movie.title
-            containerView.tv_movie_card_date.text = movie.releaseDate
+            containerView.movie_card_title_tv.text = movie.title
+            if(movie.releaseDate!="")
+            containerView.tv_movie_card_date.text =
+                DateConverter.convertServerDateToCalendar(movie.releaseDate)
+                    .get(Calendar.YEAR).toString()
             containerView.tv_movie_card_adult_label.visibility =
                 if (movie.isAdult) View.VISIBLE else View.GONE
             containerView.tv_movie_card_rating_label.setRating(

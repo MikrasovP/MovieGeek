@@ -1,7 +1,5 @@
 package demo.movie.app.ui.mvp
 
-import android.util.Log
-
 abstract class PresenterBase<V : MvpView?> : MvpPresenter<V> {
 
     companion object{

@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler.adapters
+package demo.movie.app.ui.recycler.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import demo.movie.app.R
 import demo.movie.app.di.DaggerAppComponent
 import demo.movie.app.model.dto.tv.TvPreviewDto
-import demo.movie.app.ui.discover.recycler.callbacks.TvDiffUtilCallback
+import demo.movie.app.ui.recycler.callbacks.TvDiffUtilCallback
 import demo.movie.app.util.RatingConverter
 import demo.movie.app.util.image.BaseImageLoader
 import demo.movie.app.util.image.ImageSize
@@ -65,7 +65,7 @@ class TvSeriesAdapter(
                 viewInto = containerView.iv_movie_card_poster
             )
 
-            containerView.tv_movie_card_title.text = tv.title
+            containerView.movie_card_title_tv.text = tv.title
             containerView.tv_movie_card_date.text = tv.release_date
             containerView.tv_movie_card_rating_label.setRating(
                 RatingConverter.convertFromServerFormatToLocal(tv.voteAverage)
