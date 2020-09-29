@@ -20,6 +20,7 @@ class MovieDetailPresenter @Inject constructor(
     }
 
     override fun setMoviePreviewAndUpdateDetails(moviePreview: MoviePreviewDto) {
+
         moviesRepo.getMovieDetails(moviePreview.id)
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())

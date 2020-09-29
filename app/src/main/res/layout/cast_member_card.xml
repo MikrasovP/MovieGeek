@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="@dimen/detail_cast_card_height"
+    android:layout_height="wrap_content"
     android:layout_width="@dimen/discover_card_width"
     app:cardBackgroundColor="@color/colorBackground"
     android:layout_margin="@dimen/card_layout_margin">
@@ -32,18 +32,25 @@
             android:id="@+id/cast_member_name_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/card_text_padding"
-            android:maxLines="2"
+            android:textSize="16sp"
+            android:paddingHorizontal="@dimen/card_text_padding_horizontal"
+            android:lines="2"
+            android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/cast_member_photo_container_cv"
-            tools:text="Johnny Dep"/>
+            tools:text="Paul Walker And Long Name"/>
 
         <TextView
             android:id="@+id/cast_member_role_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:textColor="@color/colorTextDarker"
+            android:lines="2"
+            android:gravity="center_vertical"
+            android:paddingVertical="2dp"
+            android:paddingHorizontal="@dimen/card_text_padding_horizontal"
             app:layout_constraintTop_toBottomOf="@id/cast_member_name_tv"
-            tools:text="Captain Jack"/>
+            tools:text="Captain Jack Loooong"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

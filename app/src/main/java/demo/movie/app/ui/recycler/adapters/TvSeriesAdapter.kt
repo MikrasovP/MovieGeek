@@ -65,7 +65,7 @@ class TvSeriesAdapter(
                 viewInto = containerView.iv_movie_card_poster
             )
 
-            containerView.tv_movie_card_title.text = tv.title
+            containerView.movie_card_title_tv.text = tv.title
             containerView.tv_movie_card_date.text = tv.release_date
             containerView.tv_movie_card_rating_label.setRating(
                 RatingConverter.convertFromServerFormatToLocal(tv.voteAverage)
