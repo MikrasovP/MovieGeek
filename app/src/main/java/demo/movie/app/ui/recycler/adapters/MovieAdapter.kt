@@ -60,14 +60,17 @@ class MovieAdapter(
 
         fun bind(movie: MoviePreviewDto) {
 
-            imageLoader.loadImagePoster(
-                viewWith = containerView,
-                imageRawPath = movie.posterPath,
-                imageSize = ImageSize.W500,
-                viewInto = containerView.iv_movie_card_poster
-            )
+            if (movie.posterPath != null) {
+                imageLoader.loadImagePoster(
+                    viewWith = containerView,
+                    imageRawPath = movie.posterPath,
+                    imageSize = ImageSize.W500,
+                    viewInto = containerView.iv_movie_card_poster
+                )
+            }
 
             containerView.movie_card_title_tv.text = movie.title
+            if(movie.releaseDate!="")
             containerView.tv_movie_card_date.text =
                 DateConverter.convertServerDateToCalendar(movie.releaseDate)
                     .get(Calendar.YEAR).toString()

@@ -3,6 +3,7 @@ package demo.movie.app.ui.detail
 import android.os.Bundle
 import android.os.ParcelFormatException
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import dagger.android.support.DaggerAppCompatActivity
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MovieDetailDto
@@ -51,12 +52,14 @@ class MovieDetailActivity : DaggerAppCompatActivity(), MovieDetailContract.View 
 
     override fun showPreviewData(moviePreview: MoviePreviewDto) {
         detail_title_tv.text = moviePreview.title
-        imageLoader.loadImagePoster(
-            detail_poster_iv,
-            moviePreview.posterPath,
-            detail_poster_iv,
-            ImageSize.W500
-        )
+        if (moviePreview.posterPath != null) {
+            imageLoader.loadImagePoster(
+                detail_poster_iv,
+                moviePreview.posterPath,
+                detail_poster_iv,
+                ImageSize.W500
+            )
+        }
 
         val year = DateConverter
             .convertServerDateToCalendar(moviePreview.releaseDate)
@@ -67,12 +70,14 @@ class MovieDetailActivity : DaggerAppCompatActivity(), MovieDetailContract.View 
 
     override fun showFullData(movieDetail: MovieDetailDto) {
         detail_title_tv.text = movieDetail.title
-        imageLoader.loadImagePoster(
-            detail_poster_iv,
-            movieDetail.posterPath,
-            detail_poster_iv,
-            ImageSize.W500
-        )
+        if (movieDetail.posterPath != null) {
+            imageLoader.loadImagePoster(
+                detail_poster_iv,
+                movieDetail.posterPath,
+                detail_poster_iv,
+                ImageSize.W500
+            )
+        }
 
         val year = DateConverter
             .convertServerDateToCalendar(movieDetail.releaseDate)

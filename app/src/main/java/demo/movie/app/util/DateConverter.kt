@@ -12,6 +12,10 @@ class DateConverter {
 
         private const val PATTERN = "yyyy-MM-dd"
 
+
+        /**
+         * @param serverDate string that matches server pattern
+         */
         fun convertServerDateToCalendar(serverDate: String): Calendar {
             val date = SimpleDateFormat(PATTERN, Locale.US).parse(serverDate)
                 ?: throw IllegalArgumentException(serverDate)

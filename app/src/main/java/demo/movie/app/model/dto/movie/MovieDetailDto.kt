@@ -11,7 +11,7 @@ data class MovieDetailDto(
     @SerializedName("title")
     val title: String,
     @SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("genres")
