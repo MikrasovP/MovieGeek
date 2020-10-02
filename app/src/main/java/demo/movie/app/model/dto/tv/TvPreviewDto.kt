@@ -10,9 +10,9 @@ data class TvPreviewDto(
     @SerializedName("name")
     val title: String,
     @SerializedName("original_name")
-    val original_name: String,
+    val originalName: String,
     @SerializedName("first_air_date")
-    val release_date: String,
+    val releaseDate: String,
     @SerializedName("poster_path")
-    val poster_path: String
+    val posterPath: String?
 )

@@ -42,9 +42,9 @@ class NetworkServiceTest {
                         id = 2,
                         voteAverage = 1.1,
                         title = "TITLE",
-                        original_name = "TITLE_ORIGINAL",
-                        release_date = "11-11-1111",
-                        poster_path = "/asdibasduvbasduv.jpg"
+                        originalName = "TITLE_ORIGINAL",
+                        releaseDate = "11-11-1111",
+                        posterPath = "/asdibasduvbasduv.jpg"
                     )
                 )
             )
