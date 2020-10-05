@@ -3,11 +3,9 @@ package demo.movie.app.ui.recycler.adapters
 import demo.movie.app.util.image.BaseImageLoader
 import javax.inject.Inject
 
-class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
+class AdapterProvider constructor()  {
 
-    private var adapterPopularMovies: MovieAdapter? = null
-    private var adapterTrendingMovies: MovieAdapter? = null
-    private var adapterTopRatedMovies: MovieAdapter? = null
+
     private var adapterRecommendedMovies: MovieAdapter? = null
 
     private var adapterPopularTvSeries: TvSeriesAdapter? = null
@@ -16,37 +14,8 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
 
     private var castAdapter: CastAdapter? = null
 
-    @Inject
-    lateinit var imageLoader: BaseImageLoader
 
-    override fun getPopularMoviesAdapter(): MovieAdapter =
-        if (adapterPopularMovies == null) {
-            val adapter = MovieAdapter(onMovieClick, imageLoader)
-            adapterPopularMovies = adapter
-            adapter
-        } else {
-            adapterPopularMovies as MovieAdapter
-        }
-
-    override fun getTrendingMoviesAdapter(): MovieAdapter =
-        if (adapterTrendingMovies == null) {
-            val adapter = MovieAdapter(onMovieClick, imageLoader)
-            adapterTrendingMovies = adapter
-            adapter
-        } else {
-            adapterTrendingMovies as MovieAdapter
-        }
-
-    override fun getTopRatedMoviesAdapter(): MovieAdapter =
-        if (adapterTopRatedMovies == null) {
-            val adapter = MovieAdapter(onMovieClick, imageLoader)
-            adapterTopRatedMovies = adapter
-            adapter
-        } else {
-            adapterTopRatedMovies as MovieAdapter
-        }
-
-    override fun getRecommendedMoviesAdapter(): MovieAdapter =
+    /*override fun getRecommendedMoviesAdapter(): MovieAdapter =
         if (adapterRecommendedMovies == null) {
             val adapter = MovieAdapter(onMovieClick, imageLoader)
             adapterRecommendedMovies = adapter
@@ -90,6 +59,6 @@ class AdapterProvider @Inject constructor() : BaseAdapterProvider() {
             adapter
         } else {
             castAdapter as CastAdapter
-        }
+        }*/
 
 }
