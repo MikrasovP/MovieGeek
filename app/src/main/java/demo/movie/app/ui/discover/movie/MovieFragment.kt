@@ -65,7 +65,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     private fun initRecyclers() {
 
-        setRecyclerViewsAdapters()
+        setUpRecyclerViewsAdapters()
 
         popular_movies_rv.apply {
             adapter = adapterPopularMovies
@@ -135,7 +135,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         requireActivity().startActivity(intent)
     }
 
-    private fun setRecyclerViewsAdapters() {
+    private fun setUpRecyclerViewsAdapters() {
         adapterPopularMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
         adapterTopRatedMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
         adapterTrendingMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
