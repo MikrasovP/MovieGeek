@@ -42,16 +42,13 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         presenter.attachView(this)
         Log.d(TAG, "onCreateView: $this")
 
-        /*if (savedInstanceState != null) {
-            savedInstanceState.
-        }*/
-
         return inflater.inflate(R.layout.discover_movies_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         retainInstance = true
+
         initRecyclers()
 
         presenter.viewIsReady()

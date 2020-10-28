@@ -49,9 +49,9 @@ class TvFragment : DaggerFragment(), TvContract.TvView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        presenter.viewIsReady()
-
         initRecyclers()
+
+        presenter.viewIsReady()
     }
 
     override fun onDestroyView() {
