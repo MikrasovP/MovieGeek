@@ -20,8 +20,7 @@ class MoviePresenter @Inject constructor(
         private const val TAG = "MoviePresenter"
     }
 
-
-    private var isDataLoaded = false
+    private var moviesLists : MoviesListsWrapper? = null
 
 
     override fun getAllData() {
@@ -48,7 +47,7 @@ class MoviePresenter @Inject constructor(
             }
             .observeOn(schedulerProvider.ui())
             .subscribe({
-                onDataReceived(it)
+                onMoviesListsReceived(it)
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
@@ -57,14 +56,18 @@ class MoviePresenter @Inject constructor(
 
     }
 
-    private fun onDataReceived(data: MoviesListsWrapper) {
+    private fun onMoviesListsReceived(data: MoviesListsWrapper) {
+        moviesLists = data
+
+        setMoviesLists(data)
+
+        view?.showData()
+    }
+
+    private fun setMoviesLists(data: MoviesListsWrapper){
         view?.setTopRated(data.topRatedMovies)
         view?.setPopular(data.popularMovies)
         view?.setTrending(data.trendingMovies)
-
-        view?.showData()
-        if (view != null)
-            isDataLoaded = true
     }
 
     override fun refreshAllData() {
@@ -73,10 +76,12 @@ class MoviePresenter @Inject constructor(
 
 
     override fun viewIsReady() {
-        if (!isDataLoaded)
+        if (moviesLists == null)
             getAllData()
-        else
+        else{
+            moviesLists?.let { setMoviesLists(it) }
             view?.showData()
+        }
     }
 
     override fun destroy() {
