@@ -1,5 +1,6 @@
 package demo.movie.app.model.repo.tv
 
+import demo.movie.app.model.dto.tv.TvDetailDto
 import demo.movie.app.model.dto.tv.TvResponseResult
 import demo.movie.app.model.services.BaseNetworkService
 import io.reactivex.rxjava3.core.Observable
@@ -20,4 +21,7 @@ class TvSeriesRepo @Inject constructor(
 
     override fun getTopRated(): Observable<TvResponseResult> =
         networkService.getTopRatedTv()
+
+    override fun getTvDetails(id: Int): Observable<TvDetailDto> =
+        networkService.getTvDetails(id)
 }

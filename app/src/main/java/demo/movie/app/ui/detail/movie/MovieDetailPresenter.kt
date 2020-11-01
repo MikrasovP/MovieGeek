@@ -1,4 +1,4 @@
-package demo.movie.app.ui.detail
+package demo.movie.app.ui.detail.movie
 
 import android.util.Log
 import demo.movie.app.model.dto.movie.MoviePreviewDto

@@ -3,8 +3,8 @@ package demo.movie.app.di.discover.modules
 import dagger.Binds
 import dagger.Module
 import demo.movie.app.di.scopes.DiscoverScope
-import demo.movie.app.ui.detail.MovieDetailContract
-import demo.movie.app.ui.detail.MovieDetailPresenter
+import demo.movie.app.ui.detail.movie.MovieDetailContract
+import demo.movie.app.ui.detail.movie.MovieDetailPresenter
 import demo.movie.app.ui.discover.movie.MovieContract
 import demo.movie.app.ui.discover.movie.MoviePresenter
 import demo.movie.app.ui.discover.tv.TvContract

@@ -1,4 +1,4 @@
-package demo.movie.app.ui.detail
+package demo.movie.app.ui.detail.movie
 
 import android.content.Intent
 import android.os.Bundle

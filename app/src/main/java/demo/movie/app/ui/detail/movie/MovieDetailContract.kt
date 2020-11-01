@@ -1,4 +1,4 @@
-package demo.movie.app.ui.detail
+package demo.movie.app.ui.detail.movie
 
 import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviePreviewDto

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
-import demo.movie.app.ui.detail.MovieDetailActivity
+import demo.movie.app.ui.detail.movie.MovieDetailActivity
 import demo.movie.app.ui.recycler.adapters.MovieAdapter
 import demo.movie.app.util.image.BaseImageLoader
 import kotlinx.android.synthetic.main.discover_movies_fragment.*

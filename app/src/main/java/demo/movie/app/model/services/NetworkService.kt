@@ -4,6 +4,7 @@ import demo.movie.app.model.api.MoviesApi
 import demo.movie.app.model.api.TvSeriesApi
 import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviesResponseResult
+import demo.movie.app.model.dto.tv.TvDetailDto
 import demo.movie.app.model.dto.tv.TvResponseResult
 import demo.movie.app.util.Constants.API_KEY
 import io.reactivex.rxjava3.core.Observable
@@ -45,4 +46,6 @@ class NetworkService @Inject constructor(
     override fun getTopRatedTv(): Observable<TvResponseResult> =
         tvSeriesApi.getTopRated(API_KEY)
 
+    override fun getTvDetails(id: Int): Observable<TvDetailDto> =
+        tvSeriesApi.getTvDetails(id, API_KEY, APPEND_TO_RESPONSE_PARAMS)
 }

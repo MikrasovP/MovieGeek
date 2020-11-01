@@ -7,7 +7,7 @@ import demo.movie.app.di.discover.modules.PresentersModule
 import demo.movie.app.di.discover.modules.RepoModule
 import demo.movie.app.di.discover.modules.SchedulerProviderModule
 import demo.movie.app.di.scopes.DiscoverScope
-import demo.movie.app.ui.detail.MovieDetailActivity
+import demo.movie.app.ui.detail.movie.MovieDetailActivity
 import demo.movie.app.ui.discover.DiscoverActivity
 
 @Module
