@@ -7,7 +7,6 @@ import demo.movie.app.model.repo.tv.BaseTvRepo
 import demo.movie.app.ui.mvp.PresenterBase
 import demo.movie.app.util.rx.BaseSchedulerProvider
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.functions.Function3
 import javax.inject.Inject
 
 class TvPresenter @Inject constructor(
@@ -20,7 +19,7 @@ class TvPresenter @Inject constructor(
         private const val TAG = "TvPresenter"
     }
 
-    private var isDataLoaded = false
+    private var tvLists: TvListsWrapper? = null
 
     override fun getAllData() {
         val topRatedMoviesObservable = tvRepo.getTopRated()
@@ -31,7 +30,7 @@ class TvPresenter @Inject constructor(
             topRatedMoviesObservable,
             popularMoviesObservable,
             trendingMoviesObservable,
-            Function3 { topRated: TvResponseResult,
+            { topRated: TvResponseResult,
                         popular: TvResponseResult,
                         trending: TvResponseResult ->
                 TvListsWrapper(
@@ -46,7 +45,7 @@ class TvPresenter @Inject constructor(
             }
             .observeOn(schedulerProvider.ui())
             .subscribe({
-                onDataReceived(it)
+                onTvListsReceived(it)
             }, {
                 view?.showLoadError()
                 Log.e(TAG, "getAllData(): ", it)
@@ -55,14 +54,18 @@ class TvPresenter @Inject constructor(
 
     }
 
-    private fun onDataReceived(data: TvListsWrapper) {
+    private fun onTvListsReceived(data: TvListsWrapper) {
+        tvLists = data
+
+        setTvLists(data)
+
+        view?.showData()
+    }
+
+    private fun setTvLists(data: TvListsWrapper){
         view?.setTopRated(data.topRated)
         view?.setPopular(data.popular)
         view?.setTrending(data.trending)
-
-        view?.showData()
-        if (view != null)
-            isDataLoaded = true
     }
 
     override fun refreshAllData() {
@@ -71,10 +74,13 @@ class TvPresenter @Inject constructor(
 
 
     override fun viewIsReady() {
-        if (!isDataLoaded)
+        if (tvLists == null)
             getAllData()
-        else
+        else{
+            tvLists?.let { setTvLists(it) }
             view?.showData()
+        }
+
     }
 
     override fun destroy() {

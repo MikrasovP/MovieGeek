@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.movie.MoviePreviewDto
-import demo.movie.app.ui.detail.MovieDetailActivity
-import demo.movie.app.ui.recycler.adapters.BaseAdapterProvider
+import demo.movie.app.ui.detail.movie.MovieDetailActivity
+import demo.movie.app.ui.recycler.adapters.MovieAdapter
+import demo.movie.app.util.image.BaseImageLoader
 import kotlinx.android.synthetic.main.discover_movies_fragment.*
 import javax.inject.Inject
 
@@ -25,7 +26,11 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     lateinit var presenter: MovieContract.MoviePresenter
 
     @Inject
-    lateinit var adapterProvider: BaseAdapterProvider
+    lateinit var imageLoader: BaseImageLoader
+
+    private lateinit var adapterPopularMovies: MovieAdapter
+    private lateinit var adapterTrendingMovies: MovieAdapter
+    private lateinit var adapterTopRatedMovies: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +40,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
         super.onCreateView(inflater, container, savedInstanceState)
 
         presenter.attachView(this)
+        Log.d(TAG, "onCreateView: $this")
 
         return inflater.inflate(R.layout.discover_movies_fragment, container, false)
     }
@@ -42,6 +48,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         retainInstance = true
+
         initRecyclers()
 
         presenter.viewIsReady()
@@ -55,10 +62,10 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     private fun initRecyclers() {
 
-        adapterProvider.onMovieClick = { showMovieDetail(it) }
+        setUpRecyclerViewsAdapters()
 
         popular_movies_rv.apply {
-            adapter = adapterProvider.getPopularMoviesAdapter()
+            adapter = adapterPopularMovies
             layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -66,7 +73,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
             )
         }
         trending_movies_rv.apply {
-            adapter = adapterProvider.getTrendingMoviesAdapter()
+            adapter = adapterTrendingMovies
             layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -74,7 +81,7 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
             )
         }
         top_movies_rv.apply {
-            adapter = adapterProvider.getTopRatedMoviesAdapter()
+            adapter = adapterTopRatedMovies
             layoutManager = LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -84,15 +91,15 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
     }
 
     override fun setPopular(popularMovieList: List<MoviePreviewDto>) {
-        adapterProvider.getPopularMoviesAdapter().updateData(popularMovieList)
+        adapterPopularMovies.updateData(popularMovieList)
     }
 
     override fun setTrending(trendingMovieList: List<MoviePreviewDto>) {
-        adapterProvider.getTrendingMoviesAdapter().updateData(trendingMovieList)
+        adapterTrendingMovies.updateData(trendingMovieList)
     }
 
     override fun setTopRated(topRatedMovieList: List<MoviePreviewDto>) {
-        adapterProvider.getTopRatedMoviesAdapter().updateData(topRatedMovieList)
+        adapterTopRatedMovies.updateData(topRatedMovieList)
     }
 
     override fun showLoadError() {
@@ -119,10 +126,17 @@ class MovieFragment : DaggerFragment(), MovieContract.MovieView {
 
     override fun showMovieDetail(movie: MoviePreviewDto) {
         Log.d(TAG, "showMovieDetail: $movie")
-        val intent = Intent(requireContext(), MovieDetailActivity::class.java)
+        val intent = Intent(requireActivity().applicationContext, MovieDetailActivity::class.java)
 
         intent.putExtra(MovieDetailActivity.MOVIE_PREVIEW_EXTRA_NAME, movie)
         requireActivity().startActivity(intent)
+    }
+
+    private fun setUpRecyclerViewsAdapters() {
+        adapterPopularMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
+        adapterTopRatedMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
+        adapterTrendingMovies = MovieAdapter({ showMovieDetail(it) }, imageLoader)
+
     }
 
 }

@@ -35,17 +35,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/discover_subtitle_height"
                 android:text="@string/discover_tv_series_popular"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_popular_tv_series"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/discover_list_height"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_popular_tv_series_title" />
 
             <TextView
@@ -54,17 +50,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/discover_subtitle_height"
                 android:text="@string/discover_tv_series_trending"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_popular_tv_series" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trending_tv_series"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/discover_list_height"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_trending_tv_series_title" />
 
             <TextView
@@ -73,17 +65,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/discover_subtitle_height"
                 android:text="@string/discover_tv_series_top_rated"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_trending_tv_series" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_top_rated_tv_series"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/discover_list_height"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_top_tv_series_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

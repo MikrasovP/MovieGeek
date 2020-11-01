@@ -6,6 +6,7 @@ import demo.movie.app.model.dto.*
 import demo.movie.app.model.dto.movie.MovieDetailDto
 import demo.movie.app.model.dto.movie.MoviePreviewDto
 import demo.movie.app.model.dto.movie.MoviesResponseResult
+import demo.movie.app.model.dto.tv.TvDetailDto
 import demo.movie.app.model.dto.tv.TvPreviewDto
 import demo.movie.app.model.dto.tv.TvResponseResult
 import demo.movie.app.model.services.NetworkService
@@ -42,9 +43,9 @@ class NetworkServiceTest {
                         id = 2,
                         voteAverage = 1.1,
                         title = "TITLE",
-                        original_name = "TITLE_ORIGINAL",
-                        release_date = "11-11-1111",
-                        poster_path = "/asdibasduvbasduv.jpg"
+                        originalName = "TITLE_ORIGINAL",
+                        releaseDate = "11-11-1111",
+                        posterPath = "/asdibasduvbasduv.jpg"
                     )
                 )
             )
@@ -88,7 +89,7 @@ class NetworkServiceTest {
                 ),
                 originalLanguage = "en",
                 overview = "hehehe, description",
-                posterPath = "/1idsuv,md",
+                posterPath = "/1idsuvmd",
                 recommendations = PROPER_MOVIE_PREVIEW_RESPONSE,
                 releaseDate = "2019-09-12",
                 revenue = 32231123,
@@ -97,6 +98,52 @@ class NetworkServiceTest {
                 tagline = "slogan",
                 title = "Tenet plus batman",
                 voteAverage = 2.1,
+            )
+        const val PROPER_TV_DETAILS_ID = 2
+        val PROPER_TV_DETAILS_RESPONSE =
+            TvDetailDto(
+                id = 2,
+                credits = Credits(
+                    id = 1,
+                    cast = immutableListOf(
+                        CastMemberDto(
+                            id = 10000,
+                            character = "Batman",
+                            profile_path = "path",
+                            name = "Donald Duck",
+                            order = 1,
+                        ),
+                        CastMemberDto(
+                            id = 12000,
+                            character = "Joker",
+                            profile_path = "path",
+                            name = "Mickey Mouse",
+                            order = 1,
+                        )
+                    ),
+                    crew = immutableListOf(
+                        CrewMemberDto(
+                            id = 2341,
+                            job = "director",
+                            name = "Christopher Nolan",
+                            profilePath = "/hguavhbnasdv",
+                        )
+                    )
+                ),
+                genres = immutableListOf(
+                    Genre(1, "thriller"),
+                    Genre(2, "action")
+                ),
+                originalLanguage = "en",
+                overview = "hehehe, description",
+                posterPath = "/1idsuvmd",
+                recommendations = PROPER_RESPONSE_TV,
+                firstAirDate = "2019-09-12",
+                status = "Returning Series",
+                title = "Tenet plus batman",
+                voteAverage = 2.1,
+                episodeRuntime = listOf(50, 40),
+                lastAirDate = "2020-11-01",
             )
     }
 
@@ -219,5 +266,23 @@ class NetworkServiceTest {
         )
 
         networkService.getTopRatedTv().contains(PROPER_RESPONSE_TV)
+    }
+
+    @Test
+    fun testGetTvDetails() {
+        Mockito.`when`(
+            tvSeriesApi.getTvDetails(
+                Mockito.eq(PROPER_TV_DETAILS_ID),
+                Mockito.anyString(),
+                Mockito.anyString(),
+            )
+        ).thenReturn(
+            Observable.just(
+                PROPER_TV_DETAILS_RESPONSE
+            )
+        )
+
+        networkService.getTvDetails(PROPER_TV_DETAILS_ID)
+            .contains(PROPER_TV_DETAILS_RESPONSE)
     }
 }

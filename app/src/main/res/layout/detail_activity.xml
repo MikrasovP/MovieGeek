@@ -28,9 +28,12 @@
                 android:layout_width="0dp"
                 app:layout_constraintWidth_percent="0.4"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_small_8"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/detail_title_tv"
+                android:adjustViewBounds="true"
                 tools:src="@drawable/ic_profile_18dp"
                 tools:layout_height="230dp"/>
 
