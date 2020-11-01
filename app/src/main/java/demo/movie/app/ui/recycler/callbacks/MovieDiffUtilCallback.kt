@@ -1,4 +1,4 @@
-package demo.movie.app.ui.discover.recycler
+package demo.movie.app.ui.recycler.callbacks
 
 import androidx.recyclerview.widget.DiffUtil
 import demo.movie.app.model.dto.movie.MoviePreviewDto

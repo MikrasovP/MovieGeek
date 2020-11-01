@@ -37,7 +37,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popular_movies_rv"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/discover_list_height"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/popular_movies_title_tv"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:orientation="horizontal"
@@ -54,7 +54,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/trending_movies_rv"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/discover_list_height"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/trending_movies_title_tv"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:orientation="horizontal"
@@ -71,7 +71,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/top_movies_rv"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/discover_list_height"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/top_movies_title_tv"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:orientation="horizontal"
@@ -82,7 +82,7 @@
     </ScrollView>
 
     <ProgressBar
-        android:id="@+id/load_spinner_pb"
+        android:id="@+id/movies_load_spinner_pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:progressTint="@color/colorAccent"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
-        android:id="@+id/load_error_tv"
+        android:id="@+id/movies_load_error_tv"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

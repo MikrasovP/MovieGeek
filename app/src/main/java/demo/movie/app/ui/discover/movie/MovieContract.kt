@@ -7,6 +7,7 @@ import demo.movie.app.ui.mvp.MvpView
 interface MovieContract {
 
     interface MovieView : MvpView {
+
         fun setPopular(popularMovieList: List<MoviePreviewDto>)
 
         fun setTrending(trendingMovieList: List<MoviePreviewDto>)
@@ -25,6 +26,7 @@ interface MovieContract {
     }
 
     interface MoviePresenter : MvpPresenter<MovieView> {
+
         fun getAllData()
 
         fun refreshAllData()

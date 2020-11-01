@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/movie_fragment"
+        android:id="@+id/movie_fragment_item"
         android:icon="@drawable/ic_movie_18dp"
+        app:showAsAction="always"
+        android:orderInCategory="1"
         android:title="@string/menu_item_movie" />
 
     <item
-        android:id="@+id/tv_fragment"
+        android:id="@+id/tv_fragment_item"
         android:icon="@drawable/ic_tv_series_18dp"
+        app:showAsAction="always"
+        android:orderInCategory="2"
         android:title="@string/menu_item_tv_series"/>
 
     <item
-        android:id="@+id/profile_fragment"
+        android:id="@+id/profile_fragment_item"
+        app:showAsAction="always"
+        android:orderInCategory="3"
         android:icon="@drawable/ic_profile_18dp"
         android:title="@string/menu_item_profile"/>
 

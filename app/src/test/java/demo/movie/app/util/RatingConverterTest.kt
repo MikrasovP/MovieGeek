@@ -2,7 +2,6 @@ package demo.movie.app.util
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.IllegalArgumentException
 import kotlin.math.abs
 
 class RatingConverterTest {
