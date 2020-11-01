@@ -28,7 +28,7 @@ data class MoviePreviewDto(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
-        parcel.readString().toString()
+        parcel.readString(),
     ) {
     }
 

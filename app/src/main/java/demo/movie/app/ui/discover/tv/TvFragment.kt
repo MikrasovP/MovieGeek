@@ -1,5 +1,6 @@
 package demo.movie.app.ui.discover.tv
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.tv.TvPreviewDto
+import demo.movie.app.ui.detail.movie.MovieDetailActivity
+import demo.movie.app.ui.detail.tv.TvDetailActivity
 import demo.movie.app.ui.recycler.adapters.TvSeriesAdapter
 import demo.movie.app.util.image.ImageLoader
 import kotlinx.android.synthetic.main.discover_tv_fragment.*
@@ -134,6 +137,10 @@ class TvFragment : DaggerFragment(), TvContract.TvView {
 
     override fun showTvDetail(tvSeries: TvPreviewDto) {
         Log.d(TAG, "showTvDetail: $tvSeries")
+        val intent = Intent(requireActivity().applicationContext, TvDetailActivity::class.java)
+
+        intent.putExtra(MovieDetailActivity.MOVIE_PREVIEW_EXTRA_NAME, tvSeries)
+        requireActivity().startActivity(intent)
     }
 
 }
