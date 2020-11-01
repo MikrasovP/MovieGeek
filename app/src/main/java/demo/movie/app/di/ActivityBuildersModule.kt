@@ -8,6 +8,7 @@ import demo.movie.app.di.discover.modules.RepoModule
 import demo.movie.app.di.discover.modules.SchedulerProviderModule
 import demo.movie.app.di.scopes.DiscoverScope
 import demo.movie.app.ui.detail.movie.MovieDetailActivity
+import demo.movie.app.ui.detail.tv.TvDetailActivity
 import demo.movie.app.ui.discover.DiscoverActivity
 
 @Module
@@ -33,5 +34,15 @@ abstract class ActivityBuildersModule {
         ]
     )
     abstract fun contributeMovieDetailActivity(): MovieDetailActivity
+
+    @DiscoverScope
+    @ContributesAndroidInjector(
+        modules = [
+            PresentersModule::class,
+            RepoModule::class,
+            SchedulerProviderModule::class
+        ]
+    )
+    abstract fun contributeTvDetailActivity(): TvDetailActivity
 
 }

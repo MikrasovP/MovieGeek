@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import demo.movie.app.R
 import demo.movie.app.model.dto.tv.TvPreviewDto
-import demo.movie.app.ui.detail.movie.MovieDetailActivity
 import demo.movie.app.ui.detail.tv.TvDetailActivity
 import demo.movie.app.ui.recycler.adapters.TvSeriesAdapter
 import demo.movie.app.util.image.ImageLoader
@@ -139,7 +138,7 @@ class TvFragment : DaggerFragment(), TvContract.TvView {
         Log.d(TAG, "showTvDetail: $tvSeries")
         val intent = Intent(requireActivity().applicationContext, TvDetailActivity::class.java)
 
-        intent.putExtra(MovieDetailActivity.MOVIE_PREVIEW_EXTRA_NAME, tvSeries)
+        intent.putExtra(TvDetailActivity.TV_PREVIEW_EXTRA_NAME, tvSeries)
         requireActivity().startActivity(intent)
     }
 

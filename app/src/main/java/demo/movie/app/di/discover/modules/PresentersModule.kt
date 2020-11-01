@@ -5,6 +5,8 @@ import dagger.Module
 import demo.movie.app.di.scopes.DiscoverScope
 import demo.movie.app.ui.detail.movie.MovieDetailContract
 import demo.movie.app.ui.detail.movie.MovieDetailPresenter
+import demo.movie.app.ui.detail.tv.TvDetailContract
+import demo.movie.app.ui.detail.tv.TvDetailPresenter
 import demo.movie.app.ui.discover.movie.MovieContract
 import demo.movie.app.ui.discover.movie.MoviePresenter
 import demo.movie.app.ui.discover.tv.TvContract
@@ -23,4 +25,8 @@ abstract class PresentersModule {
     @DiscoverScope
     @Binds
     abstract fun bindMovieDetailPresenter(presenter: MovieDetailPresenter): MovieDetailContract.Presenter
+
+    @DiscoverScope
+    @Binds
+    abstract fun bindTvDetailPresenter(presenter: TvDetailPresenter): TvDetailContract.Presenter
 }
